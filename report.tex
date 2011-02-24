@@ -1,0 +1,635 @@
+% interface=en output=pdftex
+%\author{Daniel Cheung, Richard Drake, Arturo Fernandez,\\Kevin Jalbert, \& David Rojas}
+%\date{March 1st, 2011}
+
+\usemodule[bib]
+
+\useexternalfigure[application-architecture][application-architecture.pdf]
+\useexternalfigure[factory-network-diagram][factory-network-diagram.pdf][scale=900]
+
+\setupbibtex[database=references]
+\setupcombinedlist[content][interaction=all]
+\setupinteraction[state=start,focus=standard,color=blue]
+\setupinteractionscreen[option=bookmark]
+\setuppagenumbering[location={footer,middle}]
+\setuppublications[numbering=yes,sort=author]
+
+\starttext
+  % First few pages need Roman Numerals.
+  \startfrontmatter
+  \setuppagenumbering[conversion=romannumerals]
+
+  \completecontent
+  \completelistoftables
+  \completelistoffigures
+
+  \stopfrontmatter
+
+  \startbodymatter
+  \setuppagenumbering[conversion=]
+  \setuppagenumber[number=1]
+
+  \chapter{Mission Statement}
+    %
+
+    \section{Introduction}
+      Many organizations offer a service and/or a product, this is how they function to acquire profit to sustain their business model. If the organization is providing a product, there are situations in which it might require assembly. Depending on the organization's procedure there might be numerous steps involved in the construction of the product. In addition, there could also be regulations and external procedures to apply.
+
+      The following is a brief example, of some steps that might be involved in the assembly of a product:
+
+      \startitemize
+        \item Assembling a sub-component of the product.
+        \item Notifying a department about the progress or milestones.
+        \item Updating the inventory on needed/used materials.
+        \item Safety regulations that must be taken before a specific step.
+        \item Etc.
+      \stopitemize
+
+      Existing tools exist to assist in the management of steps as well as presentation of information on the workflow of products. With the rise of mobile slate devices, it is now possible to convey all this information onto a mobile platform. These mobile platforms would excel in varies situations as they are not restricted to a single fixed location. The goal is to provide an intuitive and secure mobile application that will enable users to remain informed about the assembly of products.
+
+    \section{Product Vision/Scope}
+      \subsection{Product Vision Statement}
+        The mobile slate application will aid in organizational workflows so that users are aware of steps in a visual format to boost productivity and managerial organization.
+
+      \subsection{Major Features}
+        The mobile application will:
+
+        \startitemize
+          \item Interface with a database containing data on the workflows.
+          \item Provide an intuitive interface to present visual workflow instructions.
+          \item Ensure privacy and security of sensitive information.
+          \item Keep track of schedule, inventory and progress.
+          \item Make use of mobile wireless technology.
+        \stopitemize
+
+      \subsection{Project Scope}
+        The mobile application will only be designed and limited to simple prototypes.  The user interface will be designed and fully prototyped (paper or slideshow) to allow for simple interactions. A database schema will be designed so that the mobile application can make proper use of database technologies. Basic functionality will be provided so that the mobile application matches the web interface.
+
+    \section{Target Markets}
+      The mobile application is targeted towards organizations that have procedures in place for various workflows. The primary target organization is one with products that must be assembled by following certain steps. The mobile application caters to organizations that require increased flexibility in mobility, to enable the instructions to be followed at any location.
+
+    \section{Stakeholders}
+      \subsection{Nessis}
+        \subsubsection{Who are they?}
+          The company that will develop this application. Nessis provides the framework to allow for custom visual workflow instructions (VWI). The targeted consumers are organizations that aim to document and provide a workflow to their procedures. These workflows are not limited to text and includes other media formats such as images and videos. Procedures are also not limited to only assembly procedures, but also to regulations and standard operating functions.
+
+        \subsubsection{Why?}
+          Nessis is the company leading the development of the mobile application and thus a direct stakeholder to this project.
+
+      \subsection{Organizations/Content Creators}
+        \subsubsection{Who are they?}
+          Any organizations that wishes to use the VWI system to provide information to workers. The organizations might create the VWI content, or possibly an external source would be creating the content.
+
+        \subsubsection{Why?}
+          The mobile application will provide increased productivity and structure to operating procedures and/or regulations.
+
+      \subsection{VWI Users}
+        \subsubsection{Who are they?}
+          Any user of the mobile application that is following a set of VWI.
+
+        \subsubsection{Why?}
+          These users are interacting with the mobile device and thus would be concerned with the interface and features of the application.
+
+    \section{Assumptions}
+      \startitemize
+        \item VWI workers will have access to mobile platforms.
+        \item An existing database that contains all the VWIs exists.
+        \item The existing database is accessible via the Internet.
+        \item The mobile application will be compliant with Nessis.
+      \stopitemize
+
+    \section{Constraints}
+      \startitemize
+        \item The software specification will be completed by March 1st.
+        \item The design will be built on top of the Android operating system.
+        \item The device to host the application must support all functionality of the application.
+      \stopitemize
+
+    \section{Business Requirements}
+      \startitemize
+        \item The application must be able to display VWIs.
+        \item The application must be able to aid users in the constructions of products and the following of procedures.
+        \item The application must increase the productivity of users and companies.
+        \item The application must increase the efficiency of users and companies.
+        \item The application must increase the quality of users and companies.
+      \stopitemize
+
+  \chapter{Requirements}
+    \section{Stakeholder's Goals}
+      \bTABLE[split=repeat,frame=off]
+      \setupTABLE[column][1,2][align={lohi}]
+      \setupTABLE[column][2][align={middle,lohi}]
+      \setupTABLE[column][2][align=middle]
+      \setupTABLE[row][first][align=middle]
+      \setupTABLE[row][first][topframe=on,bottomframe=on]
+      \setupTABLE[row][last][bottomframe=on]
+      \setupTABLE[column][1][bottomframe=on]
+      \setupTABLE[row][9,17][bottomframe=on]
+
+        \bTABLEhead
+          \bTR \bTH Stakeholder \eTH \bTH Goal Tag \eTH \bTH Goals \eTH \eTR
+        \eTABLEhead
+        \bTABLEbody
+          \bTR \bTD[nr=8] Nessis \eTD \bTD GN01 \eTD \bTD Create an application that can run on the Android Operating System. \eTD \eTR
+          \bTR \bTD GN02 \eTD \bTD Modify as little of pre-existing software and infrastructure as possible. \eTD \eTR
+          \bTR \bTD GN03 \eTD \bTD Create an application that is modular in design. \eTD \eTR
+          \bTR \bTD GN04 \eTD \bTD Ensure that the application itself is well documented. \eTD \eTR
+          \bTR \bTD GN06 \eTD \bTD Create a high quality application. \eTD \eTR
+          \bTR \bTD GN07 \eTD \bTD Create an intuitive user interface that results in a positive user experience. \eTD \eTR
+          \bTR \bTD GN09 \eTD \bTD Create a secure application. \eTD \eTR
+          \bTR \bTD GN10 \eTD \bTD Create a performant application. \eTD \eTR
+          \bTR \bTD[nr=8]Organizations \eTD \bTD GO01 \eTD \bTD Have an application that can be easily dispersed amongst their employees. \eTD \eTR
+          \bTR \bTD GO02 \eTD \bTD The application should ask for user credentials for authentication. \eTD \eTR
+          \bTR \bTD GO03 \eTD \bTD Ability to display VWIs in a simple AND secured manner. \eTD \eTR
+          \bTR \bTD GO05 \eTD \bTD Ability to gather feedback and statistics on VWI usage and issues. \eTD \eTR
+          \bTR \bTD GO06 \eTD \bTD Should be low cost. \eTD \eTR
+          \bTR \bTD GO07 \eTD \bTD Ability to personalize VWIs logos and colours. \eTD \eTR
+          \bTR \bTD GO09 \eTD \bTD Ability to easily manage revisions (rollback, etc.). \eTD \eTR
+          \bTR \bTD GO10 \eTD \bTD Ability to restrict viewing rights to user level. \eTD \eTR
+          \bTR \bTD[nr=7] VWI Users \eTD \bTD GU01 \eTD \bTD The application should be intuitive and user friendly. \eTD \eTR
+          \bTR \bTD GU02 \eTD \bTD The application should allow tracking of activity history (bookmarks, history). \eTD \eTR
+          \bTR \bTD GU03 \eTD \bTD The application should allow playback of multimedia and have rudimentary manipulation of said multimedia (resize, pan, etc.). \eTD \eTR
+          \bTR \bTD GU04 \eTD \bTD The application should allow the user to control downloading of new VWIs. \eTD \eTR
+          \bTR \bTD GU06 \eTD \bTD The application should notify when state changes. \eTD \eTR
+          \bTR \bTD GU07 \eTD \bTD The application should remain up-to-date as often as possible. \eTD \eTR
+          \bTR \bTD GU08 \eTD \bTD The application should be able to connect to different VWI sources. \eTD \eTR
+        \eTABLEbody
+      \eTABLE
+
+    \section{Stakeholder's Needs}
+      \subsection{Constraints}
+        \bTABLE[split=repeat]
+          \bTABLEhead
+            \bTR \bTD Goal Tag \eTD \bTD Need Tag \eTD \bTD Need \eTD \eTR
+          \eTABLEhead
+          \bTABLEbody
+            \bTR \bTD GN01, GO01 \eTD \bTD NS01 \eTD \bTD Nessis needs the application to operate on the latest Android tablet (Asus Transformer). \eTD \eTR
+            \bTR \bTD GN01, GO01 \eTD \bTD NS02 \eTD \bTD Nessis needs the application to operate on the Android 3.0 Operating System (Honeycomb) \eTD \eTR
+            \bTR \bTD GN02 \eTD \bTD NS03 \eTD \bTD Nessis needs the application to work with the existing infrastructure, and systems. \eTD \eTR
+            \bTR \bTD GO06 \eTD \bTD NS04 \eTD \bTD Organizations need the application to access the 3G network as little as possible. \eTD \eTR
+          \eTABLEbody
+        \eTABLE
+
+      \subsection{Functional}
+        \bTABLE[split=repeat]
+          \bTABLEhead
+            \bTR \bTD Goal Tag \eTD \bTD Need Tag \eTD \bTD Need \eTD \eTR
+          \eTABLEhead
+          \bTABLEbody
+            \bTR \bTD GO02 \eTD \bTD NF01 \eTD \bTD Organization needs to have an authorization prompt before the actual application opens. \eTD \eTR
+            \bTR \bTD GO05 \eTD \bTD NF02 \eTD \bTD Organization needs to allow the user to leave feedback in a VWI. \eTD \eTR
+            \bTR \bTD GU04 \eTD \bTD NF03 \eTD \bTD Users need to be able to view the history of viewed VWIs. \eTD \eTR
+            \bTR \bTD GU03 \eTD \bTD NF04 \eTD \bTD Users need to be able to view multimedia in the application. \eTD \eTR
+            \bTR \bTD GO01, GU07 \eTD \bTD NF05 \eTD \bTD Organization needs to store and users need to need to fetch new VWIs and updates to existing VWIs. \eTD \eTR
+            \bTR \bTD GU01 \eTD \bTD NF06 \eTD \bTD VWI Users need accessibility functions. \eTD  \eTR
+            \bTR \bTD GU06 \eTD \bTD NF07 \eTD \bTD Users need to be notified of VWI changes. \eTD \eTR
+            \bTR \bTD GU01, GO03 \eTD \bTD NF08 \eTD \bTD Users should be able to search for and within VWIs. \eTD \eTR
+          \eTABLEbody
+        \eTABLE
+
+      \subsection{Non-Functional}
+        \bTABLE[split=repeat]
+          \bTABLEhead
+            \bTR \bTD Goal Tag \eTD \bTD Need Tag \eTD \bTD Need \eTD \eTR
+          \eTABLEhead
+          \bTABLEbody
+            \bTR \bTD GN03 \eTD \bTD NN01 \eTD \bTD Nessis needs the application to be designed in a modular manner. \eTD \eTR
+            \bTR \bTD GN04 \eTD \bTD NN02 \eTD \bTD Nessis needs the application code to be properly documented. \eTD \eTR
+            \bTR \bTD GN06 \eTD \bTD NN03 \eTD \bTD Nessis/VWI Users needs a stable application. \eTD \eTR
+            \bTR \bTD G10 \eTD \bTD NN04 \eTD \bTD Nessis needs fast loading of VWIs. \eTD \eTR
+            \bTR \bTD GN07 \eTD \bTD NN05 \eTD \bTD VWI Users need a responsive user interface. \eTD \eTR
+            \bTR \bTD GO01 \eTD \bTD NN06 \eTD \bTD Organizations need scalability in the application so many users can use the application concurrently. \eTD \eTR
+            \bTR \bTD GU07 \eTD \bTD NN07 \eTD \bTD VWI Users need the VWIs to be as up-to-date as frequently as possible. \eTD \eTR
+          \eTABLEbody
+        \eTABLE
+
+      \subsection{Data}
+        \bTABLE[split=repeat]
+          \bTABLEhead
+            \bTR \bTD Goal Tag \eTD \bTD Need Tag \eTD \bTD Need \eTD \eTR
+          \eTABLEhead
+          \bTABLEbody
+            \bTR \bTD GU08 \eTD \bTD ND01 \eTD \bTD Users need ability to connect to several different VWI databases. \eTD \eTR
+            \bTR \bTD GO05 \eTD \bTD ND02 \eTD \bTD Organization needs to allow for feedback to be attached to each VWI. \eTD \eTR
+            \bTR \bTD GO06 \eTD \bTD ND03 \eTD \bTD Organizations need the data transfer to be as minimal as possible. \eTD \eTR
+            \bTR \bTD GO07 \eTD \bTD ND04 \eTD \bTD Organization needs to be able to brand application. \eTD \eTR
+            \bTR \bTD GO05 \eTD \bTD ND05 \eTD \bTD Organization needs to be able to collect VWI usage statistics. \eTD \eTR
+            \bTR \bTD GU02 \eTD \bTD ND06 \eTD \bTD VWI Users need the application to store their history of viewed VWIs. \eTD \eTR
+            \bTR \bTD GN10 \eTD \bTD ND07 \eTD \bTD Application should cache retrieved multimedia. \eTD \eTR
+            \bTR \bTD GO09 \eTD \bTD ND08 \eTD \bTD Organization needs to track VWI revisions. \eTD \eTR
+            \bTR \bTD GU03 \eTD \bTD ND09 \eTD \bTD Application should support various multimedia formats. \eTD \eTR
+          \eTABLEbody
+        \eTABLE
+
+      \subsection{Security}
+        \bTABLE[split=repeat]
+          \bTABLEhead
+          \bTR \bTD Goal Tag \eTD \bTD Need Tag \eTD \bTD Need \eTD \eTR
+          \eTABLEhead
+          \bTABLEbody
+            \bTR \bTD GN09, GO03 \eTD \bTD NS01 \eTD \bTD Nessis needs to encrypt sensitive data within the application. \eTD \eTR
+            \bTR \bTD GO02, GO03 \eTD \bTD NS02 \eTD \bTD Organizations/VWI Users need mobile devices secured, for only authorized usage. \eTD \eTR
+            \bTR \bTD GO03 \eTD \bTD NS03 \eTD \bTD Organizations need additional security mechanisms to thwart theft. (Geo, self-destruct) \eTD \eTR
+            \bTR \bTD G003 \eTD \bTD NS04 \eTD \bTD Organizations need highly secure communication between server and application. \eTD \eTR
+          \eTABLEbody
+        \eTABLE
+
+      \subsection{Interface}
+        \bTABLE[split=repeat]
+          \bTABLEhead
+            \bTR \bTD Goal Tag \eTD \bTD Need Tag \eTD \bTD Need \eTD \eTR
+          \eTABLEhead
+          \bTABLEbody
+            \bTR \bTD G005 \eTD \bTD NI01 \eTD \bTD VWI Users need a way to leave feedback for a particular VWI. \eTD \eTR
+            \bTR \bTD GO07 \eTD \bTD NI02 \eTD \bTD Organizations need to be able to customize the application to match their branding. \eTD \eTR
+            \bTR \bTD GU02 \eTD \bTD NI03 \eTD \bTD VWI Users need a way to view the history of previously viewed VWIs. \eTD \eTR
+            \bTR \bTD GU01, GU03 \eTD \bTD NI04 \eTD \bTD VWI Users need to be able to view and manipulate VWIs through the use of gestures. \eTD \eTR
+            \bTR \bTD GU04 \eTD \bTD NI05 \eTD \bTD VWI Users need a way to view and control the downloading of new VWIs and updates to VWIs. \eTD \eTR
+            \bTR \bTD GO09 \eTD \bTD NI06 \eTD \bTD VWI Users need a way to view past versions of VWIs. \eTD \eTR
+            \bTR \bTD GU05 \eTD \bTD NI07 \eTD \bTD VWI Users need to be able to use alternative interactions. \eTD \eTR
+            \bTR \bTD GU06 \eTD \bTD NI08 \eTD \bTD VWI Users need to be notified via the user interface when any states change. \eTD \eTR
+            \bTR \bTD GN06, GN07, GU01 \eTD \bTD NI09 \eTD \bTD Interface must satisfy Jakob Nielsen's HCI requirements. \eTD \eTR
+          \eTABLEbody
+        \eTABLE
+
+
+    \section{Requirements}
+      \subsection{Functional}
+        \bTABLE[split=repeat]
+          \bTABLEhead
+            \bTR \bTD Need Tag \eTD \bTD Requirement Tag \eTD \bTD Requirement \eTD \bTD Priority \eTD \eTR
+          \eTABLEhead
+          \bTABLEbody
+            \bTR \bTD NF01 \eTD \bTD RF01 \eTD \bTD The application must have an authorization module to only allow access to authorized personal. \eTD \bTD \eTD \eTR
+            \bTR \bTD NF02 \eTD \bTD RF02 \eTD
+              \bTD The application must have a mechanism for VWI Users to leave feedback.
+                \startitemize
+                  \item Users can add feedback at a specific location in the VWI.
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+            \bTR \bTD NF03 \eTD \bTD RF03 \eTD
+              \bTD The application must allow users to navigate the history of viewed VWIs.
+                \startitemize
+                  \item Users can clear their history.
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+            \bTR \bTD NF04 \eTD \bTD RF04 \eTD
+              \bTD The application must allow users to view images in the application.
+                \startitemize
+                  \item Users should be able to view higher quality images.
+                  \item Users should be able to view images in full screen.
+                  \item Users should be able to zoom and pan images.
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+            \bTR \bTD NF04 \eTD \bTD RF05 \eTD
+              \bTD The application must allow users to view video in the application.
+                \startitemize
+                  \item Users should be able to view videos.
+                  \item Users should be able to change video volume.
+                  \item Users should be able to view higher quality videos.
+                  \item Users should be able to pause, rewind, fast forward, play, and stop video playback.
+                  \item Users should be able to view videos in full screen.
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+            \bTR \bTD NF05 \eTD \bTD RF06 \eTD
+              \bTD The application must be able to fetch new and updated VWIs.
+                \startitemize
+                  \item List all possible (user is authorized to view) VWIs.
+                  \item Allow the user to select VWI(s) for download.
+                  \item Prioritize VWIs in download queue.
+                  \item Display download status.
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+            \bTR \bTD NF06 \eTD \bTD RF07 \eTD
+              \bTD The application must provide accessibility functions.
+                \startitemize
+                  \item Text-to-speech.
+                  \item High contrast theme.
+                  \item Alternative inputs (physical buttons, accelerometer).
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+            \bTR \bTD NF07 \eTD \bTD RF08 \eTD
+              \bTD The application must notify users of VWI updates.
+                \startitemize
+                  \item VWI updates are being downloaded.
+                  \item VWI has been updated.
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+            \bTR \bTD NF08 \eTD \bTD RF09 \eTD
+              \bTD The application must provide users with search functionality.
+                \startitemize
+                  \item Search within an open VWI.
+                  \item Search for a specific VWI.
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+          \eTABLEbody
+        \eTABLE
+
+      \subsection{Non-Functional}
+        \bTABLE[split=repeat]
+          \bTABLEhead
+            \bTR \bTD Need Tag \eTD \bTD Requirement Tag \eTD \bTD Requirement \eTD \bTD Priority \eTD \eTR
+          \eTABLEhead
+          \bTABLEbody
+            \bTR \bTD NN01 \eTD \bTD RN01 \eTD
+              \bTD The application must be designed in a modular manner.
+                \startitemize
+                  \item Must have plugin system.
+                  \item Support configuration file.
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+            \bTR \bTD NN02 \eTD \bTD RN02 \eTD \bTD The application code must be properly documented. \eTD \bTD \eTD \eTR
+            \bTR \bTD NN03 \eTD \bTD RN03 \eTD
+              \bTD The application must be stable.
+                \startitemize
+                  \item Should be properly tested.
+                    \startitemize
+                      \item Automated unit tests.
+                      \item Usability testing.
+                    \stopitemize
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+            \bTR \bTD NN04 \eTD \bTD RN04 \eTD
+              \bTD The application should be able to open a VWI within x seconds.
+                \startitemize
+                  \item Caches recently accessed data.
+                  \item Prefetches data.
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+            \bTR \bTD NN05 \eTD \bTD RN05 \eTD
+              \bTD The application must have a responsive user interface.
+                \startitemize
+                  \item Transitions should take less than 1/4 second.
+                  \item Transitions should be hardware accelerated.
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+            \bTR \bTD NN06 \eTD \bTD RN06 \eTD
+              \bTD The application and its infrastructure must be scalable.
+                \startitemize
+                  \item Response time should not increase as more concurrent users are added.
+                  \item Response time should not increase as more data is added to the cache.
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+            \bTR \bTD NN07 \eTD \bTD RN07 \eTD
+              \bTD The application must keep VWIs as up-to-date as possible.
+                \startitemize
+                  \item VWI updates must be dispersed to clients within 1 hour.
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+          \eTABLEbody
+        \eTABLE
+
+      \subsection{Data}
+        \bTABLE[split=repeat]
+          \bTABLEhead
+            \bTR \bTD Need Tag \eTD \bTD Requirement Tag \eTD \bTD Requirement \eTD \bTD Priority \eTD \eTR
+          \eTABLEhead
+          \bTABLEbody
+            \bTR \bTD ND01\eTD \bTD RD01 \eTD
+              \bTD The application must be able to connect to different VWI databases.
+                \startitemize
+                  \item Able to do so simultaneously.
+                  \item Manage different database (add, modify, remove).
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+            \bTR \bTD ND02 \eTD \bTD RD02 \eTD
+              \bTD The application must be able to send back feedback.
+                \startitemize
+                  \item Overall rating from 1 - 5 (1 being lowest, 5 highest).
+                  \item Optional comments.
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+            \bTR \bTD ND03 \eTD \bTD RD03 \eTD
+              \bTD The application must transmit as little data as possible.
+                \startitemize
+                  \item Updates will consist of patches to text.
+                    \startitemize
+                      \item Text updates are prioritized.
+                      \item Any changed multimedia is invalidated from cache.
+                    \stopitemize
+                  \item Thumbnail images will be provided initially.
+                    \startitemize
+                      \item Users can request higher quality images.
+                    \stopitemize
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+            \bTR \bTD ND04 \eTD \bTD RD04 \eTD
+              \bTD The application must have configurable branding.
+                \startitemize
+                  \item Configuration file consists of colours, logo, and fonts.
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+            \bTR \bTD ND05 \eTD \bTD RD05 \eTD
+              \bTD The application must report usage statistics.
+                \startitemize
+                  \item Time taken per step.
+                  \item Every time a VWI was completed in its entirety.
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+            \bTR \bTD ND06 \eTD \bTD RD06 \eTD
+              \bTD The application must store VWI browsing history
+                \startitemize
+                  \item Favourited (bookmarked) VWIs.
+                  \item Recently accessed VWIs.
+                  \item Frequently accessed VWIs.
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+            \bTR \bTD ND07 \eTD \bTD RD07 \eTD
+              \bTD The application must be able to store and retrieve multimedia.
+                \startitemize
+                  \item This multimedia must expire after a set period of time.
+                    \startitemize
+                      \item Garbage collector cleanses cache at set intervals.
+                      \stopitemize
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+            \bTR \bTD ND08 \eTD \bTD RD08 \eTD \bTD The application must support viewing previous revisions. \eTD \bTD \eTD \eTR
+            \bTR \bTD ND09 \eTD \bTD RD09 \eTD
+              \bTD The application must support various multimedia formats.
+                \startitemize
+                  \item Images: JPEG, GIF, PNG
+                  \item Video: H.264, WebM
+                  \item Text: UTF-8
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+          \eTABLEbody
+        \eTABLE
+
+      \subsection{Security}
+        \bTABLE[split=repeat]
+          \bTABLEhead
+            \bTR \bTD Need Tag \eTD \bTD Requirement Tag \eTD \bTD Requirement \eTD \bTD Priority \eTD \eTR
+          \eTABLEhead
+          \bTABLEbody
+            \bTR \bTD NS01 \eTD \bTD RS01 \eTD
+              \bTD The application must store sensitive data in an encrypted format.
+                \startitemize
+                  \item Blowfish.
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+            \bTR \bTD NS02 \eTD \bTD RS02 \eTD \bTD The application must require user credentials. \eTD \bTD \eTD \eTR
+            \bTR \bTD NS03 \eTD \bTD RS03 \eTD
+              \bTD The application must have anti-theft mechanisms.
+                \startitemize
+                  \item Able to detect when user leaves authorized area using built-in GPS.
+                  \item Self-destruct (wipe all data) if no contact made with server for over 24 hours.
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+            \bTR \bTD NS04 \eTD \bTD RS04 \eTD
+              \bTD The application must communicate with the server in a secure manner.
+                \startitemize
+                  \item Using HTTPS and pre-shared keys.
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+          \eTABLEbody
+        \eTABLE
+
+      \subsection{Interface}
+        \bTABLE[split=repeat]
+          \bTABLEhead
+            \bTR \bTD Need Tag \eTD \bTD Requirement Tag \eTD \bTD Requirement \eTD \bTD Priority \eTD \eTR
+          \eTABLEhead
+          \bTABLEbody
+            \bTR \bTD NI01\eTD \bTD RI01 \eTD \bTD The application must have a button to allow users to submit feedback. \eTD \bTD \eTD \eTR
+            \bTR \bTD NI02 \eTD \bTD RI02 \eTD \bTD The application must be able to modify its appearance according to branding configuration file.\eTD \bTD \eTD \eTR
+            \bTR \bTD NI03 \eTD \bTD RI03 \eTD
+              \bTD The application must have a landing page where users can view a history of recently accessed VWIs.
+                \startitemize
+                  \item Bookmarks.
+                  \item Recently accessed.
+                  \item Most frequently accessed.
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+            \bTR \bTD NI04 \eTD \bTD RI04 \eTD
+              \bTD The application must support VWI navigation, interaction, and manipulation through gestures.
+                \startitemize
+                  \item Navigation involves swipes, flicks.
+                  \item Interaction involves long touch, short touch.
+                  \item Manipulation involves pinching to zoom.
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+            \bTR \bTD NI05 \eTD \bTD RI05 \eTD
+              \bTD The application must allow users to control the download queue of new and updated VWIs.
+                \startitemize
+                  \item Users should be able to pause and resume VWIs in queue.
+                  \item Users should be able to assign priority to VWIs in queue.
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+            \bTR \bTD NI06 \eTD \bTD RI06 \eTD
+              \bTD The application must provide a way for users to view previous revisions of VWIs.
+                \startitemize
+                  \item Users can use slider to navigate through previous revisions.
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+            \bTR \bTD NI07 \eTD \bTD RI07 \eTD
+              \bTD The application must provide alternative interaction methods.
+                \startitemize
+                  \item Physical buttons for users wearing gloves.
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+            \bTR \bTD NI08 \eTD \bTD RI08 \eTD
+              \bTD The application must notify users of VWI updates completing.
+                \startitemize
+                  \item Use standard Android notification framework.
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+            \bTR \bTD NI09 \eTD \bTD RI09 \eTD
+              \bTD The application must follow standard user interface design practices.
+                \startitemize
+                  \item Android user interface guidelines.
+                  \item Jakob Nielsen's Usability Model.
+                  \item Minimize user effort affording to Fit's Law.
+                \stopitemize
+              \eTD
+              \bTD \eTD
+            \eTR
+          \eTABLEbody
+        \eTABLE
+
+  \chapter{Use Cases}
+    %
+
+  \chapter{Scenarios}
+    %
+
+  \chapter{User Interface}
+    %
+
+  \chapter{Architecture}
+    \placefigure[][fig:application-architecture]{Application architecture.}{\externalfigure[application-architecture]}
+    \placefigure[][fig:factory-network-diagram]{Factory network diagram.}{\externalfigure[factory-network-diagram]}
+
+  \chapter{Special Technologies}
+    %
+
+  \chapter{Class Diagrams}
+    %
+
+  \chapter{Sequence Diagrams}
+
+  \stopbodymatter
+
+  \completepublications
+\stoptext
