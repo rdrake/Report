@@ -4,15 +4,23 @@
 
 \usemodule[bib]
 
-\useexternalfigure[application-architecture][application-architecture.pdf]
-\useexternalfigure[factory-network-diagram][factory-network-diagram.pdf][scale=900]
+\useexternalfigure[application-architecture][diagrams/application-architecture.pdf]
+\useexternalfigure[authenticate][diagrams/authenticate.pdf]
+\useexternalfigure[class-diagram-all][diagrams/class-diagram-all.pdf][scale=300]
+\useexternalfigure[download-vwi][diagrams/download-vwi.pdf]
+\useexternalfigure[factory-network-diagram][diagrams/factory-network-diagram.pdf][scale=900]
+\useexternalfigure[patching][diagrams/patching.pdf]
+\useexternalfigure[update-vwi][diagrams/update-vwi.pdf]
+\useexternalfigure[use-case-diagram][diagrams/use-case-diagram.pdf][scale=750]
 
 \setupbibtex[database=references]
 \setupcombinedlist[content][interaction=all]
 \setupinteraction[state=start,focus=standard,color=blue]
 \setupinteractionscreen[option=bookmark]
+\setupitemize[packed]
 \setuppagenumbering[location={footer,middle}]
 \setuppublications[numbering=yes,sort=author]
+\setupwhitespace[medium]
 
 \starttext
   % First few pages need Roman Numerals.
@@ -37,7 +45,7 @@
 
       The following is a brief example, of some steps that might be involved in the assembly of a product:
 
-      \startitemize
+      \startitemize[packed]
         \item Assembling a sub-component of the product.
         \item Notifying a department about the progress or milestones.
         \item Updating the inventory on needed/used materials.
@@ -54,7 +62,7 @@
       \subsection{Major Features}
         The mobile application will:
 
-        \startitemize
+        \startitemize[packed]
           \item Interface with a database containing data on the workflows.
           \item Provide an intuitive interface to present visual workflow instructions.
           \item Ensure privacy and security of sensitive information.
@@ -91,7 +99,7 @@
           These users are interacting with the mobile device and thus would be concerned with the interface and features of the application.
 
     \section{Assumptions}
-      \startitemize
+      \startitemize[packed]
         \item VWI workers will have access to mobile platforms.
         \item An existing database that contains all the VWIs exists.
         \item The existing database is accessible via the Internet.
@@ -99,14 +107,14 @@
       \stopitemize
 
     \section{Constraints}
-      \startitemize
+      \startitemize[packed]
         \item The software specification will be completed by March 1st.
         \item The design will be built on top of the Android operating system.
         \item The device to host the application must support all functionality of the application.
       \stopitemize
 
     \section{Business Requirements}
-      \startitemize
+      \startitemize[packed]
         \item The application must be able to display VWIs.
         \item The application must be able to aid users in the constructions of products and the following of procedures.
         \item The application must increase the productivity of users and companies.
@@ -115,16 +123,14 @@
       \stopitemize
 
   \chapter{Requirements}
+    \setupTABLE[column][1,2][align={middle,lohi}]
+    \setupTABLE[row][first][align=middle,topframe=on,bottomframe=on]
+    \setupTABLE[row][last][bottomframe=on]
+
     \section{Stakeholder's Goals}
-      \bTABLE[split=repeat,frame=off]
-      \setupTABLE[column][1,2][align={lohi}]
-      \setupTABLE[column][2][align={middle,lohi}]
-      \setupTABLE[column][2][align=middle]
-      \setupTABLE[row][first][align=middle]
-      \setupTABLE[row][first][topframe=on,bottomframe=on]
-      \setupTABLE[row][last][bottomframe=on]
-      \setupTABLE[column][1][bottomframe=on]
-      \setupTABLE[row][9,17][bottomframe=on]
+      \bTABLE[frame=off]
+        \setupTABLE[column][1][bottomframe=on]
+        \setupTABLE[row][9,17][bottomframe=on]
 
         \bTABLEhead
           \bTR \bTH Stakeholder \eTH \bTH Goal Tag \eTH \bTH Goals \eTH \eTR
@@ -134,31 +140,29 @@
           \bTR \bTD GN02 \eTD \bTD Modify as little of pre-existing software and infrastructure as possible. \eTD \eTR
           \bTR \bTD GN03 \eTD \bTD Create an application that is modular in design. \eTD \eTR
           \bTR \bTD GN04 \eTD \bTD Ensure that the application itself is well documented. \eTD \eTR
-          \bTR \bTD GN06 \eTD \bTD Create a high quality application. \eTD \eTR
-          \bTR \bTD GN07 \eTD \bTD Create an intuitive user interface that results in a positive user experience. \eTD \eTR
-          \bTR \bTD GN09 \eTD \bTD Create a secure application. \eTD \eTR
-          \bTR \bTD GN10 \eTD \bTD Create a performant application. \eTD \eTR
+          \bTR \bTD GN05 \eTD \bTD Create a high quality application. \eTD \eTR
+          \bTR \bTD GN06 \eTD \bTD Create an intuitive user interface that results in a positive user experience. \eTD \eTR
+          \bTR \bTD GN07 \eTD \bTD Create a secure application. \eTD \eTR
+          \bTR \bTD GN08 \eTD \bTD Create a performant application. \eTD \eTR
           \bTR \bTD[nr=8]Organizations \eTD \bTD GO01 \eTD \bTD Have an application that can be easily dispersed amongst their employees. \eTD \eTR
           \bTR \bTD GO02 \eTD \bTD The application should ask for user credentials for authentication. \eTD \eTR
-          \bTR \bTD GO03 \eTD \bTD Ability to display VWIs in a simple AND secured manner. \eTD \eTR
-          \bTR \bTD GO05 \eTD \bTD Ability to gather feedback and statistics on VWI usage and issues. \eTD \eTR
-          \bTR \bTD GO06 \eTD \bTD Should be low cost. \eTD \eTR
-          \bTR \bTD GO07 \eTD \bTD Ability to personalize VWIs logos and colours. \eTD \eTR
-          \bTR \bTD GO09 \eTD \bTD Ability to easily manage revisions (rollback, etc.). \eTD \eTR
-          \bTR \bTD GO10 \eTD \bTD Ability to restrict viewing rights to user level. \eTD \eTR
+          \bTR \bTD GO03 \eTD \bTD Ability to display VWIs in a simple \bf{and} secured manner. \eTD \eTR
+          \bTR \bTD GO04 \eTD \bTD Ability to gather feedback and statistics on VWI usage and issues. \eTD \eTR
+          \bTR \bTD GO05 \eTD \bTD Should be low cost. \eTD \eTR
+          \bTR \bTD GO06 \eTD \bTD Ability to personalize VWIs logos and colours. \eTD \eTR
+          \bTR \bTD GO07 \eTD \bTD Ability to easily manage revisions (rollback, etc.). \eTD \eTR
+          \bTR \bTD GO08 \eTD \bTD Ability to restrict viewing rights to user level. \eTD \eTR
           \bTR \bTD[nr=7] VWI Users \eTD \bTD GU01 \eTD \bTD The application should be intuitive and user friendly. \eTD \eTR
           \bTR \bTD GU02 \eTD \bTD The application should allow tracking of activity history (bookmarks, history). \eTD \eTR
           \bTR \bTD GU03 \eTD \bTD The application should allow playback of multimedia and have rudimentary manipulation of said multimedia (resize, pan, etc.). \eTD \eTR
-          \bTR \bTD GU04 \eTD \bTD The application should allow the user to control downloading of new VWIs. \eTD \eTR
-          \bTR \bTD GU06 \eTD \bTD The application should notify when state changes. \eTD \eTR
-          \bTR \bTD GU07 \eTD \bTD The application should remain up-to-date as often as possible. \eTD \eTR
-          \bTR \bTD GU08 \eTD \bTD The application should be able to connect to different VWI sources. \eTD \eTR
+          \bTR \bTD GU04 \eTD \bTD The application should notify when state changes. \eTD \eTR
+          \bTR \bTD GU05 \eTD \bTD The application should remain up-to-date as often as possible. \eTD \eTR
         \eTABLEbody
       \eTABLE
 
     \section{Stakeholder's Needs}
       \subsection{Constraints}
-        \bTABLE[split=repeat]
+        \bTABLE[frame=off]
           \bTABLEhead
             \bTR \bTD Goal Tag \eTD \bTD Need Tag \eTD \bTD Need \eTD \eTR
           \eTABLEhead
@@ -166,96 +170,95 @@
             \bTR \bTD GN01, GO01 \eTD \bTD NS01 \eTD \bTD Nessis needs the application to operate on the latest Android tablet (Asus Transformer). \eTD \eTR
             \bTR \bTD GN01, GO01 \eTD \bTD NS02 \eTD \bTD Nessis needs the application to operate on the Android 3.0 Operating System (Honeycomb) \eTD \eTR
             \bTR \bTD GN02 \eTD \bTD NS03 \eTD \bTD Nessis needs the application to work with the existing infrastructure, and systems. \eTD \eTR
-            \bTR \bTD GO06 \eTD \bTD NS04 \eTD \bTD Organizations need the application to access the 3G network as little as possible. \eTD \eTR
+            \bTR \bTD GO05 \eTD \bTD NS04 \eTD \bTD Organizations need the application to access the 3G network as little as possible. \eTD \eTR
           \eTABLEbody
         \eTABLE
 
       \subsection{Functional}
-        \bTABLE[split=repeat]
+        \bTABLE[frame=off]
           \bTABLEhead
             \bTR \bTD Goal Tag \eTD \bTD Need Tag \eTD \bTD Need \eTD \eTR
           \eTABLEhead
           \bTABLEbody
             \bTR \bTD GO02 \eTD \bTD NF01 \eTD \bTD Organization needs to have an authorization prompt before the actual application opens. \eTD \eTR
-            \bTR \bTD GO05 \eTD \bTD NF02 \eTD \bTD Organization needs to allow the user to leave feedback in a VWI. \eTD \eTR
-            \bTR \bTD GU04 \eTD \bTD NF03 \eTD \bTD Users need to be able to view the history of viewed VWIs. \eTD \eTR
+            \bTR \bTD GO04 \eTD \bTD NF02 \eTD \bTD Organization needs to allow the user to leave feedback in a VWI. \eTD \eTR
+            \bTR \bTD GU02 \eTD \bTD NF03 \eTD \bTD Users need to be able to view the history of viewed VWIs. \eTD \eTR
             \bTR \bTD GU03 \eTD \bTD NF04 \eTD \bTD Users need to be able to view multimedia in the application. \eTD \eTR
-            \bTR \bTD GO01, GU07 \eTD \bTD NF05 \eTD \bTD Organization needs to store and users need to need to fetch new VWIs and updates to existing VWIs. \eTD \eTR
+            \bTR \bTD GO01 \eTD \bTD NF05 \eTD \bTD Organization needs to store and users need to need to fetch new VWIs and updates to existing VWIs. \eTD \eTR
             \bTR \bTD GU01 \eTD \bTD NF06 \eTD \bTD VWI Users need accessibility functions. \eTD  \eTR
-            \bTR \bTD GU06 \eTD \bTD NF07 \eTD \bTD Users need to be notified of VWI changes. \eTD \eTR
+            \bTR \bTD GU04 \eTD \bTD NF07 \eTD \bTD Users need to be notified of VWI changes. \eTD \eTR
             \bTR \bTD GU01, GO03 \eTD \bTD NF08 \eTD \bTD Users should be able to search for and within VWIs. \eTD \eTR
           \eTABLEbody
         \eTABLE
 
       \subsection{Non-Functional}
-        \bTABLE[split=repeat]
+        \bTABLE[frame=off]
           \bTABLEhead
             \bTR \bTD Goal Tag \eTD \bTD Need Tag \eTD \bTD Need \eTD \eTR
           \eTABLEhead
           \bTABLEbody
             \bTR \bTD GN03 \eTD \bTD NN01 \eTD \bTD Nessis needs the application to be designed in a modular manner. \eTD \eTR
             \bTR \bTD GN04 \eTD \bTD NN02 \eTD \bTD Nessis needs the application code to be properly documented. \eTD \eTR
-            \bTR \bTD GN06 \eTD \bTD NN03 \eTD \bTD Nessis/VWI Users needs a stable application. \eTD \eTR
-            \bTR \bTD G10 \eTD \bTD NN04 \eTD \bTD Nessis needs fast loading of VWIs. \eTD \eTR
-            \bTR \bTD GN07 \eTD \bTD NN05 \eTD \bTD VWI Users need a responsive user interface. \eTD \eTR
+            \bTR \bTD GN05 \eTD \bTD NN03 \eTD \bTD Nessis/VWI Users needs a stable application. \eTD \eTR
+            \bTR \bTD GN08 \eTD \bTD NN04 \eTD \bTD Nessis needs fast loading of VWIs. \eTD \eTR
+            \bTR \bTD GN06 \eTD \bTD NN05 \eTD \bTD VWI Users need a responsive user interface. \eTD \eTR
             \bTR \bTD GO01 \eTD \bTD NN06 \eTD \bTD Organizations need scalability in the application so many users can use the application concurrently. \eTD \eTR
-            \bTR \bTD GU07 \eTD \bTD NN07 \eTD \bTD VWI Users need the VWIs to be as up-to-date as frequently as possible. \eTD \eTR
+            \bTR \bTD GU05 \eTD \bTD NN07 \eTD \bTD VWI Users need the VWIs to be as up-to-date as frequently as possible. \eTD \eTR
           \eTABLEbody
         \eTABLE
 
       \subsection{Data}
-        \bTABLE[split=repeat]
+        \bTABLE[frame=off]
           \bTABLEhead
             \bTR \bTD Goal Tag \eTD \bTD Need Tag \eTD \bTD Need \eTD \eTR
           \eTABLEhead
           \bTABLEbody
-            \bTR \bTD GU08 \eTD \bTD ND01 \eTD \bTD Users need ability to connect to several different VWI databases. \eTD \eTR
-            \bTR \bTD GO05 \eTD \bTD ND02 \eTD \bTD Organization needs to allow for feedback to be attached to each VWI. \eTD \eTR
-            \bTR \bTD GO06 \eTD \bTD ND03 \eTD \bTD Organizations need the data transfer to be as minimal as possible. \eTD \eTR
-            \bTR \bTD GO07 \eTD \bTD ND04 \eTD \bTD Organization needs to be able to brand application. \eTD \eTR
-            \bTR \bTD GO05 \eTD \bTD ND05 \eTD \bTD Organization needs to be able to collect VWI usage statistics. \eTD \eTR
-            \bTR \bTD GU02 \eTD \bTD ND06 \eTD \bTD VWI Users need the application to store their history of viewed VWIs. \eTD \eTR
-            \bTR \bTD GN10 \eTD \bTD ND07 \eTD \bTD Application should cache retrieved multimedia. \eTD \eTR
-            \bTR \bTD GO09 \eTD \bTD ND08 \eTD \bTD Organization needs to track VWI revisions. \eTD \eTR
-            \bTR \bTD GU03 \eTD \bTD ND09 \eTD \bTD Application should support various multimedia formats. \eTD \eTR
+            \bTR \bTD GO04 \eTD \bTD ND01 \eTD \bTD Organization needs to allow for feedback to be attached to each VWI. \eTD \eTR
+            \bTR \bTD GO05 \eTD \bTD ND02 \eTD \bTD Organizations need the data transfer to be as minimal as possible. \eTD \eTR
+            \bTR \bTD GO06 \eTD \bTD ND03 \eTD \bTD Organization needs to be able to brand application. \eTD \eTR
+            \bTR \bTD GO04 \eTD \bTD ND04 \eTD \bTD Organization needs to be able to collect VWI usage statistics. \eTD \eTR
+            \bTR \bTD GU02 \eTD \bTD ND05 \eTD \bTD VWI Users need the application to store their history of viewed VWIs. \eTD \eTR
+            \bTR \bTD GN08 \eTD \bTD ND06 \eTD \bTD Application should cache retrieved multimedia. \eTD \eTR
+            \bTR \bTD GO07 \eTD \bTD ND07 \eTD \bTD Organization needs to track VWI revisions. \eTD \eTR
+            \bTR \bTD GU03 \eTD \bTD ND08 \eTD \bTD Application should support various multimedia formats. \eTD \eTR
           \eTABLEbody
         \eTABLE
 
       \subsection{Security}
-        \bTABLE[split=repeat]
+        \bTABLE[frame=off]
           \bTABLEhead
           \bTR \bTD Goal Tag \eTD \bTD Need Tag \eTD \bTD Need \eTD \eTR
           \eTABLEhead
           \bTABLEbody
-            \bTR \bTD GN09, GO03 \eTD \bTD NS01 \eTD \bTD Nessis needs to encrypt sensitive data within the application. \eTD \eTR
+            \bTR \bTD GN07, GO03 \eTD \bTD NS01 \eTD \bTD Nessis needs to encrypt sensitive data within the application. \eTD \eTR
             \bTR \bTD GO02, GO03 \eTD \bTD NS02 \eTD \bTD Organizations/VWI Users need mobile devices secured, for only authorized usage. \eTD \eTR
             \bTR \bTD GO03 \eTD \bTD NS03 \eTD \bTD Organizations need additional security mechanisms to thwart theft. (Geo, self-destruct) \eTD \eTR
-            \bTR \bTD G003 \eTD \bTD NS04 \eTD \bTD Organizations need highly secure communication between server and application. \eTD \eTR
+            \bTR \bTD GO03 \eTD \bTD NS04 \eTD \bTD Organizations need highly secure communication between server and application. \eTD \eTR
           \eTABLEbody
         \eTABLE
 
       \subsection{Interface}
-        \bTABLE[split=repeat]
+        \bTABLE[frame=off]
           \bTABLEhead
             \bTR \bTD Goal Tag \eTD \bTD Need Tag \eTD \bTD Need \eTD \eTR
           \eTABLEhead
           \bTABLEbody
-            \bTR \bTD G005 \eTD \bTD NI01 \eTD \bTD VWI Users need a way to leave feedback for a particular VWI. \eTD \eTR
-            \bTR \bTD GO07 \eTD \bTD NI02 \eTD \bTD Organizations need to be able to customize the application to match their branding. \eTD \eTR
+            \bTR \bTD G004 \eTD \bTD NI01 \eTD \bTD VWI Users need a way to leave feedback for a particular VWI. \eTD \eTR
+            \bTR \bTD GO06 \eTD \bTD NI02 \eTD \bTD Organizations need to be able to customize the application to match their branding. \eTD \eTR
             \bTR \bTD GU02 \eTD \bTD NI03 \eTD \bTD VWI Users need a way to view the history of previously viewed VWIs. \eTD \eTR
             \bTR \bTD GU01, GU03 \eTD \bTD NI04 \eTD \bTD VWI Users need to be able to view and manipulate VWIs through the use of gestures. \eTD \eTR
-            \bTR \bTD GU04 \eTD \bTD NI05 \eTD \bTD VWI Users need a way to view and control the downloading of new VWIs and updates to VWIs. \eTD \eTR
-            \bTR \bTD GO09 \eTD \bTD NI06 \eTD \bTD VWI Users need a way to view past versions of VWIs. \eTD \eTR
-            \bTR \bTD GU05 \eTD \bTD NI07 \eTD \bTD VWI Users need to be able to use alternative interactions. \eTD \eTR
-            \bTR \bTD GU06 \eTD \bTD NI08 \eTD \bTD VWI Users need to be notified via the user interface when any states change. \eTD \eTR
-            \bTR \bTD GN06, GN07, GU01 \eTD \bTD NI09 \eTD \bTD Interface must satisfy Jakob Nielsen's HCI requirements. \eTD \eTR
+            \bTR \bTD GO07 \eTD \bTD NI05 \eTD \bTD VWI Users need a way to view past versions of VWIs. \eTD \eTR
+            \bTR \bTD GU06 \eTD \bTD NI06 \eTD \bTD VWI Users need to be able to use alternative interactions. \eTD \eTR
+            \bTR \bTD GU04 \eTD \bTD NI07 \eTD \bTD VWI Users need to be notified via the user interface when any states change. \eTD \eTR
+            \bTR \bTD GN05, GN06, GU01 \eTD \bTD NI08 \eTD \bTD Interface must satisfy Jakob Nielsen's HCI requirements. \eTD \eTR
           \eTABLEbody
         \eTABLE
 
+    \setupTABLE[row][each][bottomframe=on]
 
     \section{Requirements}
       \subsection{Functional}
-        \bTABLE[split=repeat]
+        \bTABLE[split=repeat,frame=off]
           \bTABLEhead
             \bTR \bTD Need Tag \eTD \bTD Requirement Tag \eTD \bTD Requirement \eTD \bTD Priority \eTD \eTR
           \eTABLEhead
@@ -263,7 +266,7 @@
             \bTR \bTD NF01 \eTD \bTD RF01 \eTD \bTD The application must have an authorization module to only allow access to authorized personal. \eTD \bTD \eTD \eTR
             \bTR \bTD NF02 \eTD \bTD RF02 \eTD
               \bTD The application must have a mechanism for VWI Users to leave feedback.
-                \startitemize
+                \startitemize[packed]
                   \item Users can add feedback at a specific location in the VWI.
                 \stopitemize
               \eTD
@@ -271,7 +274,7 @@
             \eTR
             \bTR \bTD NF03 \eTD \bTD RF03 \eTD
               \bTD The application must allow users to navigate the history of viewed VWIs.
-                \startitemize
+                \startitemize[packed]
                   \item Users can clear their history.
                 \stopitemize
               \eTD
@@ -279,7 +282,7 @@
             \eTR
             \bTR \bTD NF04 \eTD \bTD RF04 \eTD
               \bTD The application must allow users to view images in the application.
-                \startitemize
+                \startitemize[packed]
                   \item Users should be able to view higher quality images.
                   \item Users should be able to view images in full screen.
                   \item Users should be able to zoom and pan images.
@@ -289,7 +292,7 @@
             \eTR
             \bTR \bTD NF04 \eTD \bTD RF05 \eTD
               \bTD The application must allow users to view video in the application.
-                \startitemize
+                \startitemize[packed]
                   \item Users should be able to view videos.
                   \item Users should be able to change video volume.
                   \item Users should be able to view higher quality videos.
@@ -301,7 +304,7 @@
             \eTR
             \bTR \bTD NF05 \eTD \bTD RF06 \eTD
               \bTD The application must be able to fetch new and updated VWIs.
-                \startitemize
+                \startitemize[packed]
                   \item List all possible (user is authorized to view) VWIs.
                   \item Allow the user to select VWI(s) for download.
                   \item Prioritize VWIs in download queue.
@@ -312,7 +315,7 @@
             \eTR
             \bTR \bTD NF06 \eTD \bTD RF07 \eTD
               \bTD The application must provide accessibility functions.
-                \startitemize
+                \startitemize[packed]
                   \item Text-to-speech.
                   \item High contrast theme.
                   \item Alternative inputs (physical buttons, accelerometer).
@@ -322,7 +325,7 @@
             \eTR
             \bTR \bTD NF07 \eTD \bTD RF08 \eTD
               \bTD The application must notify users of VWI updates.
-                \startitemize
+                \startitemize[packed]
                   \item VWI updates are being downloaded.
                   \item VWI has been updated.
                 \stopitemize
@@ -331,7 +334,7 @@
             \eTR
             \bTR \bTD NF08 \eTD \bTD RF09 \eTD
               \bTD The application must provide users with search functionality.
-                \startitemize
+                \startitemize[packed]
                   \item Search within an open VWI.
                   \item Search for a specific VWI.
                 \stopitemize
@@ -342,14 +345,14 @@
         \eTABLE
 
       \subsection{Non-Functional}
-        \bTABLE[split=repeat]
+        \bTABLE[frame=off]
           \bTABLEhead
             \bTR \bTD Need Tag \eTD \bTD Requirement Tag \eTD \bTD Requirement \eTD \bTD Priority \eTD \eTR
           \eTABLEhead
           \bTABLEbody
             \bTR \bTD NN01 \eTD \bTD RN01 \eTD
               \bTD The application must be designed in a modular manner.
-                \startitemize
+                \startitemize[packed]
                   \item Must have plugin system.
                   \item Support configuration file.
                 \stopitemize
@@ -359,9 +362,9 @@
             \bTR \bTD NN02 \eTD \bTD RN02 \eTD \bTD The application code must be properly documented. \eTD \bTD \eTD \eTR
             \bTR \bTD NN03 \eTD \bTD RN03 \eTD
               \bTD The application must be stable.
-                \startitemize
+                \startitemize[packed]
                   \item Should be properly tested.
-                    \startitemize
+                    \startitemize[packed]
                       \item Automated unit tests.
                       \item Usability testing.
                     \stopitemize
@@ -371,7 +374,7 @@
             \eTR
             \bTR \bTD NN04 \eTD \bTD RN04 \eTD
               \bTD The application should be able to open a VWI within x seconds.
-                \startitemize
+                \startitemize[packed]
                   \item Caches recently accessed data.
                   \item Prefetches data.
                 \stopitemize
@@ -380,7 +383,7 @@
             \eTR
             \bTR \bTD NN05 \eTD \bTD RN05 \eTD
               \bTD The application must have a responsive user interface.
-                \startitemize
+                \startitemize[packed]
                   \item Transitions should take less than 1/4 second.
                   \item Transitions should be hardware accelerated.
                 \stopitemize
@@ -389,7 +392,7 @@
             \eTR
             \bTR \bTD NN06 \eTD \bTD RN06 \eTD
               \bTD The application and its infrastructure must be scalable.
-                \startitemize
+                \startitemize[packed]
                   \item Response time should not increase as more concurrent users are added.
                   \item Response time should not increase as more data is added to the cache.
                 \stopitemize
@@ -398,7 +401,7 @@
             \eTR
             \bTR \bTD NN07 \eTD \bTD RN07 \eTD
               \bTD The application must keep VWIs as up-to-date as possible.
-                \startitemize
+                \startitemize[packed]
                   \item VWI updates must be dispersed to clients within 1 hour.
                 \stopitemize
               \eTD
@@ -408,65 +411,56 @@
         \eTABLE
 
       \subsection{Data}
-        \bTABLE[split=repeat]
+        \bTABLE[split=repeat,frame=off]
           \bTABLEhead
             \bTR \bTD Need Tag \eTD \bTD Requirement Tag \eTD \bTD Requirement \eTD \bTD Priority \eTD \eTR
           \eTABLEhead
           \bTABLEbody
-            \bTR \bTD ND01\eTD \bTD RD01 \eTD
-              \bTD The application must be able to connect to different VWI databases.
-                \startitemize
-                  \item Able to do so simultaneously.
-                  \item Manage different database (add, modify, remove).
-                \stopitemize
-              \eTD
-              \bTD \eTD
-            \eTR
-            \bTR \bTD ND02 \eTD \bTD RD02 \eTD
+            \bTR \bTD ND01 \eTD \bTD RD01 \eTD
               \bTD The application must be able to send back feedback.
-                \startitemize
+                \startitemize[packed]
                   \item Overall rating from 1 - 5 (1 being lowest, 5 highest).
                   \item Optional comments.
                 \stopitemize
               \eTD
               \bTD \eTD
             \eTR
-            \bTR \bTD ND03 \eTD \bTD RD03 \eTD
+            \bTR \bTD ND02 \eTD \bTD RD02 \eTD
               \bTD The application must transmit as little data as possible.
-                \startitemize
+                \startitemize[packed]
                   \item Updates will consist of patches to text.
-                    \startitemize
+                    \startitemize[packed]
                       \item Text updates are prioritized.
                       \item Any changed multimedia is invalidated from cache.
                     \stopitemize
                   \item Thumbnail images will be provided initially.
-                    \startitemize
+                    \startitemize[packed]
                       \item Users can request higher quality images.
                     \stopitemize
                 \stopitemize
               \eTD
               \bTD \eTD
             \eTR
-            \bTR \bTD ND04 \eTD \bTD RD04 \eTD
+            \bTR \bTD ND03 \eTD \bTD RD03 \eTD
               \bTD The application must have configurable branding.
-                \startitemize
+                \startitemize[packed]
                   \item Configuration file consists of colours, logo, and fonts.
                 \stopitemize
               \eTD
               \bTD \eTD
             \eTR
-            \bTR \bTD ND05 \eTD \bTD RD05 \eTD
+            \bTR \bTD ND04 \eTD \bTD RD04 \eTD
               \bTD The application must report usage statistics.
-                \startitemize
+                \startitemize[packed]
                   \item Time taken per step.
                   \item Every time a VWI was completed in its entirety.
                 \stopitemize
               \eTD
               \bTD \eTD
             \eTR
-            \bTR \bTD ND06 \eTD \bTD RD06 \eTD
+            \bTR \bTD ND05 \eTD \bTD RD05 \eTD
               \bTD The application must store VWI browsing history
-                \startitemize
+                \startitemize[packed]
                   \item Favourited (bookmarked) VWIs.
                   \item Recently accessed VWIs.
                   \item Frequently accessed VWIs.
@@ -474,21 +468,21 @@
               \eTD
               \bTD \eTD
             \eTR
-            \bTR \bTD ND07 \eTD \bTD RD07 \eTD
+            \bTR \bTD ND06 \eTD \bTD RD06 \eTD
               \bTD The application must be able to store and retrieve multimedia.
-                \startitemize
+                \startitemize[packed]
                   \item This multimedia must expire after a set period of time.
-                    \startitemize
+                    \startitemize[packed]
                       \item Garbage collector cleanses cache at set intervals.
                       \stopitemize
                 \stopitemize
               \eTD
               \bTD \eTD
             \eTR
-            \bTR \bTD ND08 \eTD \bTD RD08 \eTD \bTD The application must support viewing previous revisions. \eTD \bTD \eTD \eTR
+            \bTR \bTD ND07 \eTD \bTD RD07 \eTD \bTD The application must support viewing previous revisions. \eTD \bTD \eTD \eTR
             \bTR \bTD ND09 \eTD \bTD RD09 \eTD
               \bTD The application must support various multimedia formats.
-                \startitemize
+                \startitemize[packed]
                   \item Images: JPEG, GIF, PNG
                   \item Video: H.264, WebM
                   \item Text: UTF-8
@@ -500,14 +494,14 @@
         \eTABLE
 
       \subsection{Security}
-        \bTABLE[split=repeat]
+        \bTABLE[frame=off]
           \bTABLEhead
             \bTR \bTD Need Tag \eTD \bTD Requirement Tag \eTD \bTD Requirement \eTD \bTD Priority \eTD \eTR
           \eTABLEhead
           \bTABLEbody
             \bTR \bTD NS01 \eTD \bTD RS01 \eTD
               \bTD The application must store sensitive data in an encrypted format.
-                \startitemize
+                \startitemize[packed]
                   \item Blowfish.
                 \stopitemize
               \eTD
@@ -516,7 +510,7 @@
             \bTR \bTD NS02 \eTD \bTD RS02 \eTD \bTD The application must require user credentials. \eTD \bTD \eTD \eTR
             \bTR \bTD NS03 \eTD \bTD RS03 \eTD
               \bTD The application must have anti-theft mechanisms.
-                \startitemize
+                \startitemize[packed]
                   \item Able to detect when user leaves authorized area using built-in GPS.
                   \item Self-destruct (wipe all data) if no contact made with server for over 24 hours.
                 \stopitemize
@@ -525,7 +519,7 @@
             \eTR
             \bTR \bTD NS04 \eTD \bTD RS04 \eTD
               \bTD The application must communicate with the server in a secure manner.
-                \startitemize
+                \startitemize[packed]
                   \item Using HTTPS and pre-shared keys.
                 \stopitemize
               \eTD
@@ -535,7 +529,7 @@
         \eTABLE
 
       \subsection{Interface}
-        \bTABLE[split=repeat]
+        \bTABLE[frame=off]
           \bTABLEhead
             \bTR \bTD Need Tag \eTD \bTD Requirement Tag \eTD \bTD Requirement \eTD \bTD Priority \eTD \eTR
           \eTABLEhead
@@ -544,7 +538,7 @@
             \bTR \bTD NI02 \eTD \bTD RI02 \eTD \bTD The application must be able to modify its appearance according to branding configuration file.\eTD \bTD \eTD \eTR
             \bTR \bTD NI03 \eTD \bTD RI03 \eTD
               \bTD The application must have a landing page where users can view a history of recently accessed VWIs.
-                \startitemize
+                \startitemize[packed]
                   \item Bookmarks.
                   \item Recently accessed.
                   \item Most frequently accessed.
@@ -554,7 +548,7 @@
             \eTR
             \bTR \bTD NI04 \eTD \bTD RI04 \eTD
               \bTD The application must support VWI navigation, interaction, and manipulation through gestures.
-                \startitemize
+                \startitemize[packed]
                   \item Navigation involves swipes, flicks.
                   \item Interaction involves long touch, short touch.
                   \item Manipulation involves pinching to zoom.
@@ -563,41 +557,32 @@
               \bTD \eTD
             \eTR
             \bTR \bTD NI05 \eTD \bTD RI05 \eTD
-              \bTD The application must allow users to control the download queue of new and updated VWIs.
-                \startitemize
-                  \item Users should be able to pause and resume VWIs in queue.
-                  \item Users should be able to assign priority to VWIs in queue.
-                \stopitemize
-              \eTD
-              \bTD \eTD
-            \eTR
-            \bTR \bTD NI06 \eTD \bTD RI06 \eTD
               \bTD The application must provide a way for users to view previous revisions of VWIs.
-                \startitemize
+                \startitemize[packed]
                   \item Users can use slider to navigate through previous revisions.
                 \stopitemize
               \eTD
               \bTD \eTD
             \eTR
-            \bTR \bTD NI07 \eTD \bTD RI07 \eTD
+            \bTR \bTD NI06 \eTD \bTD RI06 \eTD
               \bTD The application must provide alternative interaction methods.
-                \startitemize
+                \startitemize[packed]
                   \item Physical buttons for users wearing gloves.
                 \stopitemize
               \eTD
               \bTD \eTD
             \eTR
-            \bTR \bTD NI08 \eTD \bTD RI08 \eTD
+            \bTR \bTD NI07 \eTD \bTD RI07 \eTD
               \bTD The application must notify users of VWI updates completing.
-                \startitemize
+                \startitemize[packed]
                   \item Use standard Android notification framework.
                 \stopitemize
               \eTD
               \bTD \eTD
             \eTR
-            \bTR \bTD NI09 \eTD \bTD RI09 \eTD
+            \bTR \bTD NI08 \eTD \bTD RI08 \eTD
               \bTD The application must follow standard user interface design practices.
-                \startitemize
+                \startitemize[packed]
                   \item Android user interface guidelines.
                   \item Jakob Nielsen's Usability Model.
                   \item Minimize user effort affording to Fit's Law.
@@ -609,10 +594,1246 @@
         \eTABLE
 
   \chapter{Use Cases}
-    %
+    \section{Actors}
+      \startitemize[packed]
+        \item Nessis - The company which is developing the mobile application to view VWIs. The company is aiming to create a mobile application to interface with their existing system that allows users to view and create VWIs.
+        \item Organization - Any organization that makes use of Nessis's system and wishes to make use of mobile devices within it's corporation. The organization's goal is to increase production quality and employee pro ductivity through mobile VWIs.
+        \item VWI Users - An employee within an organization that is making use of Nessis's system. The user will actually use the mobile device and application to construct products and/or follow processes. The VWI users will search for VWIs and follow the steps to the completion of the VWI. VWI users could also be citizens who have the mobile application to connect to an organizations database to view their VWIs.
+      \stopitemize
+
+      \placefigure[][fig:use-case-diagram]{Overview of use cases.}{\externalfigure[use-case-diagram]}
+
+    \section{Use Case Descriptions}
+      \setupTABLE[column][1,2][align={right,lohi}]
+      \setupTABLE[row][first][align=right]
+
+      \subsection{UC 1 - Logging into the Application}
+      \bTABLE
+        \bTABLEbody
+          \bTR \bTD Actors \eTD \bTD VWI User \eTD \eTR
+          \bTR \bTD Stakeholder/Needs \eTD \bTD RS02,RF01 \eTD \eTR
+          \bTR \bTD Overview \eTD \bTD VWI User is opening the application. \eTD \eTR
+          \bTR \bTD Pre-conditions \eTD \bTD VWI User is outside of the application. \eTD \eTR
+          \bTR \bTD Post-conditions \eTD \bTD VWI User is within the application and is also authenticated. \eTD \eTR
+          \bTR \bTD Trigger \eTD \bTD VWI User wants to enter the application. \eTD \eTR
+          \bTR \bTD Main Flow \eTD \bTD
+            \startitemize[n,packed]
+              \item The VWI User selects the VWI Viewer application from the home screen.
+              \item The application will open and display the login screen for user authorization.
+              \item The VWI User will enter their user identification and password.
+              \item The application will check user input against authorized credentials.
+              \item The application will be authorized and allowed in the application.
+            \stopitemize
+          \eTD \eTR
+          \bTR \bTD Exception \eTD \bTD
+            2a. VWI User wants to exit login process.
+
+            \hspace{1em} 2a1. VWI User pushes the back button to exit application.
+
+            5a. Incorrect user identification and password.
+
+            5a1. Prompt user with error notification.
+
+            5a2. VWI User returns to Step 3.
+          \eTD \eTR
+        \eTABLEbody
+      \eTABLE
+
+      \subsection{UC 2 - Opening VWI}
+      \bTABLE
+      \bTABLEbody
+      \bTR
+      \bTD Actors \eTD
+      \bTD VWI User \eTD
+       \eTR
+      \bTR
+      \bTD Stakeholder/Needs \eTD
+      \bTD RF06.1, RF06.2, RF08.1 RF09.2 RS04 \eTD
+       \eTR
+      \bTR
+      \bTD Overview \eTD
+      \bTD VWI User selects a VWI for viewing \eTD
+       \eTR
+      \bTR
+      \bTD Pre-conditions \eTD
+      \bTD User is logged into the application and on the landing page. \eTD
+       \eTR
+      \bTR
+      \bTD Post-conditions \eTD
+      \bTD VWI process viewer displays the selected VWI \eTD
+       \eTR
+      \bTR
+      \bTD Trigger \eTD
+      \bTD VWI User wants to view a specific VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Main Flow \eTD
+      \bTD \startitemize[packed]
+      \item VWI User locates the VWI to view using UC 13.
+      \item VWI User selects the VWI preview icon.
+      \item The application opens the VWI from the cache.
+      \item The application switches to viewer interface and displays the VWI on screen.
+      \stopitemize \eTD
+       \eTR
+      \bTR
+      \bTD Exception \eTD
+      \bTD
+      1a. VWI User cannot be found.
+
+      1b1. VWI User searches for VWI using the search bar located on the landing page.
+
+       1b2a. If VWI is still not found.
+
+        1b2a1. VWI does not exist.
+
+       1b2b. VWI has been found.
+
+        1b2b1. VWI User continues from Step 2.
+
+      3a. VWI data is not within the cache
+
+      3a1. The application fetches and stores the VWI data from the server's repository into the cache.
+
+       3a1a. The application cannot fetch VWI data due to no connectivity.
+
+        3a1a1. The VWI data is placed in the download queue.
+
+        3a1a2. An error notification will be displayed saying that the VWI is currently not available until network connectivity is restored.
+
+      3a2. Continue from Step 3
+       \eTD
+       \eTR
+      \eTABLEbody
+      \eTABLE
+
+      \subsection{UC 3 - Search for VWIs}
+      \bTABLE
+      \bTABLEbody
+      \bTR
+      \bTD Actors \eTD
+      \bTD VWI User \eTD
+       \eTR
+      \bTR
+      \bTD Stakeholder/Needs \eTD
+      \bTD RF09.2 \eTD
+       \eTR
+      \bTR
+      \bTD Overview \eTD
+      \bTD VWI User is searching for a specific VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Pre-conditions \eTD
+      \bTD VWI User is logged in the application and is at the landing page. \eTD
+       \eTR
+      \bTR
+      \bTD Post-conditions \eTD
+      \bTD VWI User is viewing a list of best matching VWIs to that of the search term(s). \eTD
+       \eTR
+      \bTR
+      \bTD Trigger \eTD
+      \bTD VWI User wants to find a certain VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Main Flow \eTD
+      \bTD \startitemize[packed]
+      \item The VWI User touches the search bar.
+      \item The VWI User types in search terms for the VWI he/her is looking for.
+      \item The application queries for the VWIs.
+      \item A list of the best matching VWIs are listed.
+      \stopitemize \eTD
+       \eTR
+      \bTR
+      \bTD Exception \eTD
+      \bTD
+      2a. If previous searches has been done
+
+      2a1. Previous searches terms are displayed as suggestions
+
+      2a2. Continue from Step 3.
+
+      3a. No network connectivity.
+
+      3a1. Search only the local cache for VWIs.
+
+      3a2. Continue from Step 4.
+
+      3b. There is network connectivity.
+
+      3b1. Search the local cache and the list of VWIs from the server repositories.
+
+      3b2. Continue from Step 4.
+       \eTD
+       \eTR
+      \eTABLEbody
+      \eTABLE
+
+      \subsection{UC 4 - Search for Previously Viewed VWIs}
+      \bTABLE
+      \bTABLEbody
+      \bTR
+      \bTD Actors \eTD
+      \bTD VWI User \eTD
+       \eTR
+      \bTR
+      \bTD Stakeholder/Needs \eTD
+      \bTD RF03, RD06.1,RD06.2,RD06.3, RI03.1,RI03.2,RI03.3 \eTD
+       \eTR
+      \bTR
+      \bTD Overview \eTD
+      \bTD VWI User is searching for a previously viewed VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Pre-conditions \eTD
+      \bTD VWI User is logged in the application and is at the landing page, and has already viewed a number of VWIs. \eTD
+       \eTR
+      \bTR
+      \bTD Post-conditions \eTD
+      \bTD VWI User is presented with the desired VWI shown in the scrolling category. \eTD
+       \eTR
+      \bTR
+      \bTD Trigger \eTD
+      \bTD VWI User wants to find a previously viewed VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Main Flow \eTD
+      \bTD \startitemize[packed]
+      \item The VWI User identifies the most appropriate category of history to inspect. (Recently, Frequently, or Bookmarked).
+      \item The VWI Users scrolls to the desired VWI.
+      \stopitemize \eTD
+       \eTR
+      \bTR
+      \bTD Exception \eTD
+      \bTD
+      1a. The VWI User does not have these categories available.
+
+       1a1. The VWI User touches on the root of the breadcrumb.
+
+       1a2. The scrolling category now displays the history categories.
+
+       1a3. Continue from Step 1.
+
+      2a. The number of VWI is too large.
+
+      2a1. The VWI User selects the filter button for the appropriate category.
+
+      2a2. The VWI User types in the search term(s).
+
+      2a3. The Application search the number of VWIs to those that matched the term(s).
+       \eTD
+       \eTR
+      \eTABLEbody
+      \eTABLE
+
+      \subsection{UC 5 - Search within a VWI}
+      \bTABLE
+      \bTABLEbody
+      \bTR
+      \bTD Actors \eTD
+      \bTD VWI User \eTD
+       \eTR
+      \bTR
+      \bTD Stakeholder/Needs \eTD
+      \bTD RF09.1 \eTD
+       \eTR
+      \bTR
+      \bTD Overview \eTD
+      \bTD VWI User is searching for a term within an open VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Pre-conditions \eTD
+      \bTD VWI User is logged in the application and is viewing a VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Post-conditions \eTD
+      \bTD VWI User is presented the search result of the term within the VWI (like Chrome) \eTD
+       \eTR
+      \bTR
+      \bTD Trigger \eTD
+      \bTD VWI User wants to search for a term within a VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Main Flow \eTD
+      \bTD \startitemize[packed]
+      \item The VWI User performs the long-touch gesture on the device's screen.
+      \item The application presents the context menu.
+      \item The VWI User touches the search option in the context menu.
+      \item The search bar appears in the top right of the screen.
+      \item The VWI User touches the search bar.
+      \item The VWI User enters the search term(s) on the keyboard.
+      \item The Application progressivelysearches the open VWI from the current location.
+      \item The VWI User touches the next/previous match button to move the focus to desired location.
+      \item The VWI User touches the close button on the search bar to close it.
+      \stopitemize \eTD
+       \eTR
+      \bTR
+      \bTD Exception \eTD
+      \bTD
+      1a. The context menu is already opened.
+
+      1a1. The VWI User continues to Step 2.
+
+      1b. The search bar is already opened.
+
+       1b1. The VWI User continues to Step 5.
+
+      6a. There are no found matches
+
+       6a1. There is an indication of 0/0 matches.
+
+      8a. There is no found matches
+
+       8a1. There are no next/previous match buttons found.
+       \eTD
+       \eTR
+      \eTABLEbody
+      \eTABLE
+
+      \subsection{UC 6 - Bookmarks a VWI}
+      \bTABLE
+      \bTABLEbody
+      \bTR
+      \bTD Actors \eTD
+      \bTD VWI User \eTD
+       \eTR
+      \bTR
+      \bTD Stakeholder/Needs \eTD
+      \bTD RD06.1, RI03.1 \eTD
+       \eTR
+      \bTR
+      \bTD Overview \eTD
+      \bTD The VWI User bookmarks a desired VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Pre-conditions \eTD
+      \bTD The VWI User is logged in within the application \eTD
+       \eTR
+      \bTR
+      \bTD Post-conditions \eTD
+      \bTD The desired VWI has been bookmarked. \eTD
+       \eTR
+      \bTR
+      \bTD Trigger \eTD
+      \bTD VWI User wants to bookmark a specific VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Main Flow \eTD
+      \bTD \startitemize[packed]
+      \item The VWI User navigates to the desired VWI through the interface (search, or landing page).
+      \item The VWI User touches the hollowed star icon on the VWI
+      \item The application bookmarks the selected VWI.
+      \item The hollowed star icon now is filled a solid yellow color.
+      \stopitemize \eTD
+       \eTR
+      \bTR
+      \bTD Exception \eTD
+      \bTD
+      1a. The VWI User is already within a VWI.
+
+       1a1. The VWI User performs the long-touch gesture on device's screen.
+
+       1a2. The application presents the context menu.
+
+       1a3. The VWI User touches the bookmark option in the context menu.
+
+       1a4. The application bookmarks the current VWI.
+       \eTD
+       \eTR
+      \eTABLEbody
+      \eTABLE
+
+      \subsection{UC 7 - Navigating within a VWI}
+      \bTABLE
+      \bTABLEbody
+      \bTR
+      \bTD Actors \eTD
+      \bTD VWI User \eTD
+       \eTR
+      \bTR
+      \bTD Stakeholder/Needs \eTD
+      \bTD RI04.1 RI07 \eTD
+       \eTR
+      \bTR
+      \bTD Overview \eTD
+      \bTD The VWI User is navigating within a VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Pre-conditions \eTD
+      \bTD The VWI User is logged in within the application and viewing a VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Post-conditions \eTD
+      \bTD The VWI User has moved locations within the viewed VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Trigger \eTD
+      \bTD VWI User wants to move the current location within the viewed VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Main Flow \eTD
+      \bTD \startitemize[packed]
+      \item The VWI User swipes upwards on the screen.
+      \item The VWI scrolls upwards to show additional content further down the VWI.
+      \item The VWI User swipes downwards on the screen.
+      \item The VWI scrolls downwards to show the content that was just passed.
+      \stopitemize \eTD
+       \eTR
+      \bTR
+      \bTD Exception \eTD
+      \bTD
+      2a. No more content to show, current location is at the ending of the VWI.
+
+       2a1. The VWI doesn't scroll but pulses on the bottom of the screen to indicate the boarder.
+
+      4a. No more content to show, current location is at the starting of the VWI.
+
+       4a1. The VWI doesn't scroll but pulses on the top of the screen to indicate the boarder.
+       \eTD
+       \eTR
+      \eTABLEbody
+      \eTABLE
+
+      \subsection{UC 8 - Quickly Navigate within a VWI}
+      \bTABLE
+      \bTABLEbody
+      \bTR
+      \bTD Actors \eTD
+      \bTD VWI User \eTD
+       \eTR
+      \bTR
+      \bTD Stakeholder/Needs \eTD
+      \bTD RI04.1 RI07 \eTD
+       \eTR
+      \bTR
+      \bTD Overview \eTD
+      \bTD The VWI User is quickly navigating within a VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Pre-conditions \eTD
+      \bTD The VWI User is logged in within the application and viewing a VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Post-conditions \eTD
+      \bTD The VWI User has quickly moved locations within the viewed VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Trigger \eTD
+      \bTD VWI User wants to quickly movie to a new location within the viewed VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Main Flow \eTD
+      \bTD \startitemize[packed]
+      \item The VWI User does the swipe gesture to the right
+      \item The application now displays the navigation pane.
+      \item The VWI User swipesupwards on the navigation view bar.
+      \item The VWI quickly scrolls upwards to show additional content further down the VWI.
+      \item The VWI User swipesdownwards on the navigation view bar.
+      \item The VWI quickly scrolls downwards to show the content that was just passed.
+      \stopitemize \eTD
+       \eTR
+      \bTR
+      \bTD Exception \eTD
+      \bTD
+      1a. The navigation pane is already opened.
+
+      1a1. The VWI User continues to Step 2.
+
+      4a. No more content to show, current location is at the ending of the VWI.
+
+       4a1. The VWI doesn't scroll but pulses on the bottom of the navigation view bar to indicate the boarder.
+      6a. No more content to show, current location is at the starting of the VWI.
+
+       6a1. The VWI doesn't scroll but pulses on the top of the navigation view bar to indicate the boarder.
+       \eTD
+       \eTR
+      \eTABLEbody
+      \eTABLE
+
+      \subsection{UC 9 - Using Hyperlinks in a VWI}
+      \bTABLE
+      \bTABLEbody
+      \bTR
+      \bTD Actors \eTD
+      \bTD VWI User \eTD
+       \eTR
+      \bTR
+      \bTD Stakeholder/Needs \eTD
+      \bTD  \eTD
+       \eTR
+      \bTR
+      \bTD Overview \eTD
+      \bTD The VWI User quickly jumps to locations within a VWI using hyperlinks. \eTD
+       \eTR
+      \bTR
+      \bTD Pre-conditions \eTD
+      \bTD The VWI User is logged in within the application and viewing a VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Post-conditions \eTD
+      \bTD The VWI User has quickly moved viewing location within the viewed VWI by following a hyperlink. \eTD
+       \eTR
+      \bTR
+      \bTD Trigger \eTD
+      \bTD VWI User wants to follow a hyperlink that is found in a VWI to quickly see the referenced information. \eTD
+       \eTR
+      \bTR
+      \bTD Main Flow \eTD
+      \bTD \startitemize[packed]
+      \item The VWI User identifies a hyperlink that he/her wishes to follow.
+      \item The VWI User touches the hyperlink.
+      \item The VWI's current location jumps to the destination of the hyperlink (in a smooth transition).
+      \stopitemize \eTD
+       \eTR
+      \bTR
+      \bTD Exception \eTD
+      \bTD
+
+       \eTD
+       \eTR
+      \eTABLEbody
+      \eTABLE
+
+      \subsection{UC 10 - Viewing Images in a VWI}
+      \bTABLE
+      \bTABLEbody
+      \bTR
+      \bTD Actors \eTD
+      \bTD VWI User \eTD
+       \eTR
+      \bTR
+      \bTD Stakeholder/Needs \eTD
+      \bTD RF04.1, RF04.2, RF04.3 \eTD
+       \eTR
+      \bTR
+      \bTD Overview \eTD
+      \bTD The VWI User views an image within a VWI using all availablefeatures. \eTD
+       \eTR
+      \bTR
+      \bTD Pre-conditions \eTD
+      \bTD The VWI User is logged in within the application and viewing a VWI that has an image at the current location. \eTD
+       \eTR
+      \bTR
+      \bTD Post-conditions \eTD
+      \bTD The VWI User has viewed the image in a higher quality viewer, and is back at the VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Trigger \eTD
+      \bTD The VWI User wants to view an image within a VWI with great detail and control. \eTD
+       \eTR
+      \bTR
+      \bTD Main Flow \eTD
+      \bTD \startitemize[packed]
+      \item The VWI User touches the low-quality image.
+      \item The VWI presents the image in a higher-quality format.
+      \item The VWI User long-touches the higher-quality image.
+      \item The context menu appears with image related options.
+      \item The VWI User selects the full screen option from the context menu.
+      \item The Image Viewer now appears with the selected image.
+      \item The VWI User swipes the screen to move the image in all directions
+      \item The VWI User pinches the screen to zoom in, application recomposes the image and notifies the new zoom level.
+      \item The VWI User flicks the screen to zoom out. application recomposes the image and notifies the new zoom level.
+      \item The VWI User presses the back button in the bottom left corner to leave the Image Viewer.
+      \stopitemize \eTD
+       \eTR
+      \bTR
+      \bTD Exception \eTD
+      \bTD
+      2a. The higher-quality image is not in the cache.
+
+       2a1. The higher-quality image is pulled from the appropriate repository.
+        2a1a. There is no network available.
+
+         2a1a1. The image is placed in the download queue.
+
+         2a1a2. An error message is displayed indicating that image will be downloaded when network is restored.
+
+       2a2. Restart from Step 2.
+       \eTD
+       \eTR
+      \eTABLEbody
+      \eTABLE
+
+      \subsection{UC 11 - Viewing Video in a VWI}
+      \bTABLE[split=repeat]
+      \bTABLEbody
+      \bTR
+      \bTD Actors \eTD
+      \bTD VWI User \eTD
+       \eTR
+      \bTR
+      \bTD Stakeholder/Needs \eTD
+      \bTD RF05.1,RF05.2,RF05.3,RF05.4,RF05.5 \eTD
+       \eTR
+      \bTR
+      \bTD Overview \eTD
+      \bTD The VWI User views a video within a VWI using all availablefeatures. \eTD
+       \eTR
+      \bTR
+      \bTD Pre-conditions \eTD
+      \bTD The VWI User is logged in within the application and viewing a VWI that has a video at the current location. \eTD
+       \eTR
+      \bTR
+      \bTD Post-conditions \eTD
+      \bTD The VWI User has viewed the video in a video player, and is back at the VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Trigger \eTD
+      \bTD The VWI User wants to view a video within a VWI with great detail and control. \eTD
+       \eTR
+      \bTR
+      \bTD Main Flow \eTD
+      \bTD \startitemize[packed]
+      \item The VWI User touches the video thumbnail.
+      \item The Video Viewer now appears with the selected video.
+      \item The VWI User presses the play button.
+      \item The Video Viewer starts playing the video.
+      \item The VWI User preses the pause button.
+      \item The Video Viewer pauses the video playback.
+      \item The VWI User adjusts the volume with a slider button (like Youtube).
+      \item The VWI User seeks to a new location by sliding the progress bar.
+      \item The Video Viewer moved the video to the new location and resumes the current state.
+      \item The VWI User presses the High-Quality button in the top right of the screen.
+      \item The Video Viewer switches the video content to the high-quality version and resumes the current state.
+      \item The VWI User presses the back button in the bottom left corner to leave the Video Viewer.
+      \stopitemize \eTD
+       \eTR
+      \bTR
+      \bTD Exception \eTD
+      \bTD
+      2a. The video is not in the cache.
+
+       2a1. The video is pulled from the appropriate repository.
+
+        2a1a. There is no network available.
+
+         2a1a1. The video is placed in the download queue.
+
+         2a1a2. An error message is displayed indicating that video will be downloaded when network is restored.
+
+       2a2. Restart from Step 2.
+
+      4a. The video has not yet buffered, or is being streamed.
+
+       4a1. A buffering icon will be displayed.
+
+       4a2. The playback will halt till the video has buffered enough
+
+       4a3. Continue from Step 4.
+
+      9a. The video has not yet buffered, or is being streamed.
+
+       9a1. A buffering icon will be displayed.
+
+       9a2. The playback will halt till the video has buffered enough
+       9a3. Continue from Step 9.
+
+      11a. The high-quality video is not in the cache.
+
+       11a1. The high-quality video is pulled from the appropriate repository.
+        11a1a. There is no network available.
+
+         11a1a1. The high-qualityvideo is placed in the download queue.
+
+         11a1a2. An error message is displayed indicating that high-qualityvideo will be downloaded when network is restored.
+
+       11a2. Restart from Step 11.
+       \eTD
+       \eTR
+      \eTABLEbody
+      \eTABLE
+
+      \subsection{UC 12 - Leaving Feedback in a VWI}
+      \bTABLE
+      \bTABLEbody
+      \bTR
+      \bTD Actors \eTD
+      \bTD VWI User \eTD
+       \eTR
+      \bTR
+      \bTD Stakeholder/Needs \eTD
+      \bTD RF02.1,RF02.2,RF02.3 \eTD
+       \eTR
+      \bTR
+      \bTD Overview \eTD
+      \bTD The VWI User adds a feedback to a VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Pre-conditions \eTD
+      \bTD The VWI User is logged into the application, and viewing a VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Post-conditions \eTD
+      \bTD The VWI User has left feedback on the viewed VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Trigger \eTD
+      \bTD The VWI User wants to leave feedback on the viewed VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Main Flow \eTD
+      \bTD \startitemize[packed]
+      \item The VWI User long-touches on the screen at a location that they wish to leave feedback.
+      \item A prompt appears with pre-defined phrases as check boxes.
+      \item The VWI User touches the most appropriatephrases to describe their feedback.
+      \item The VWI User presses the okay button to leave the feedback.
+      \item The application returns to the VWI and a notification indicates that feedback was left.
+      \stopitemize \eTD
+       \eTR
+      \bTR
+      \bTD Exception \eTD
+      \bTD
+      4a. The VWI User touches the cancel button.
+
+       4a1. The prompt disappears, and only shows the VWI with no feedback being left.
+       \eTD
+       \eTR
+      \eTABLEbody
+      \eTABLE
+
+      \subsection{UC 13 - Browsing the VWIs}
+      \bTABLE
+      \bTABLEbody
+      \bTR
+      \bTD Actors \eTD
+      \bTD VWI User \eTD
+       \eTR
+      \bTR
+      \bTD Stakeholder/Needs \eTD
+      \bTD RF06.1 \eTD
+       \eTR
+      \bTR
+      \bTD Overview \eTD
+      \bTD The VWI User browses the VWI's in ahierarchical manner. \eTD
+       \eTR
+      \bTR
+      \bTD Pre-conditions \eTD
+      \bTD The VWI User is logged into the application and is on the landing page. \eTD
+       \eTR
+      \bTR
+      \bTD Post-conditions \eTD
+      \bTD The VWI User has located a desired VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Trigger \eTD
+      \bTD The VWI User wants to find a specific VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Main Flow \eTD
+      \bTD \startitemize[packed]
+      \item The VWI User touches the highest level of the VWI repository.
+      \item The application adds the directory of the touched level to the breadcrumb trail and shows the next level of directories.
+      \item The VWI User touches the desired directory from the possible directories and Step 2 occurs again.
+      \item Step 3 continues until finally VWIs are shown.
+      \item The VWI user back tracks by pressing on anyone of the previous directory levels in the breadcrumbs.
+      \item Step 3 continues until finally the desired VWI is shown.
+      \stopitemize \eTD
+       \eTR
+      \bTR
+      \bTD Exception \eTD
+      \bTD
+      1a. The VWI User is already within a certain depth of the VWI repository.
+
+       1a1. The VWI User continues from Step 3.
+       \eTD
+       \eTR
+      \eTABLEbody
+      \eTABLE
+
+      \subsection{UC 14 - Remove Bookmark}
+      \bTABLE
+      \bTABLEbody
+      \bTR
+      \bTD Actors \eTD
+      \bTD VWI User \eTD
+       \eTR
+      \bTR
+      \bTD Stakeholder/Needs \eTD
+      \bTD  \eTD
+       \eTR
+      \bTR
+      \bTD Overview \eTD
+      \bTD The VWI User un-bookmarks a VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Pre-conditions \eTD
+      \bTD The VWI User is logged in the application and at least one VWI is bookmarked. \eTD
+       \eTR
+      \bTR
+      \bTD Post-conditions \eTD
+      \bTD The VWI User is logged in the application and the desired VWI is now un-bookmarked. \eTD
+       \eTR
+      \bTR
+      \bTD Trigger \eTD
+      \bTD The VWI User wants to un-bookmark a VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Main Flow \eTD
+      \bTD \startitemize[packed]
+      \item The VWI User locates the VWI in the landing page using UC 13.
+      \item The VWI User touches on the solid star icon on the VWI's preview.
+      \item The solid star icon turns hollow and the bookmarked VWI is not anymore.
+      \stopitemize \eTD
+       \eTR
+      \bTR
+      \bTD Exception \eTD
+      \bTD
+      1a. The VWI User is within a bookmarked VWI.
+
+       1a1. The VWI User performs the long-touch gesture on device's screen.
+
+       1a2. The application presents the context menu.
+
+       1a3. The VWI User touches the un-bookmark option in the context menu.
+
+       1a4. The application un-bookmarks the current VWI.
+       \eTD
+       \eTR
+      \eTABLEbody
+      \eTABLE
+
+      \subsection{UC 15 - Adjust Display Brightness}
+      \bTABLE
+      \bTABLEbody
+      \bTR
+      \bTD Actors \eTD
+      \bTD VWI User \eTD
+       \eTR
+      \bTR
+      \bTD Stakeholder/Needs \eTD
+      \bTD  \eTD
+       \eTR
+      \bTR
+      \bTD Overview \eTD
+      \bTD The VWI User adjusts the display's brightness. \eTD
+       \eTR
+      \bTR
+      \bTD Pre-conditions \eTD
+      \bTD The VWI User is logged in the application. \eTD
+       \eTR
+      \bTR
+      \bTD Post-conditions \eTD
+      \bTD The VWI User is logged in the application and the brightness has been adjusted to desired level. \eTD
+       \eTR
+      \bTR
+      \bTD Trigger \eTD
+      \bTD The VWI User wants to adjust the screen's brightness. \eTD
+       \eTR
+      \bTR
+      \bTD Main Flow \eTD
+      \bTD \startitemize[packed]
+      \item The VWI User performs the long-touch gesture on the device's screen.
+      \item The application presents the context menu.
+      \item The VWI User touches on the brightness icon.
+      \item The brightness icon highlights to indicate being selected.
+      \item The VWI User then adjusts the brightness higher by pressing on the + icon.
+      \item The VWI User then adjusts the brightness lower by pressing on the - icon.
+      \item The VWI User touches the center of the context menu to close the context menu.
+      \stopitemize \eTD
+       \eTR
+      \bTR
+      \bTD Exception \eTD
+      \bTD
+      1a. The VWI User already has the context menu open.
+
+       1a1. The VWI User continues from Step 3.
+
+      3a. The VWI User already has selected the brightness icon.
+
+       3a1. The VWI User continues from Step 5.
+
+      5a. The brightness is already at the highest level.
+
+       5a1. The + icon is dimmed out and inaccessible.
+
+       5a2. The VWI User continues from Step 6.
+
+      6a. The brightness is already at the lowest level.
+
+       6a1. The - icon is dimmed out and inaccessible.
+
+       6a2. The VWI User continues from Step 7.
+       \eTD
+       \eTR
+      \eTABLEbody
+      \eTABLE
+
+      \subsection{UC 16 - Adjust Display Contrast}
+      \bTABLE
+      \bTABLEbody
+      \bTR
+      \bTD Actors \eTD
+      \bTD VWI User \eTD
+       \eTR
+      \bTR
+      \bTD Stakeholder/Needs \eTD
+      \bTD  \eTD
+       \eTR
+      \bTR
+      \bTD Overview \eTD
+      \bTD The VWI User adjusts the display's contrast. \eTD
+       \eTR
+      \bTR
+      \bTD Pre-conditions \eTD
+      \bTD The VWI User is logged in the application. \eTD
+       \eTR
+      \bTR
+      \bTD Post-conditions \eTD
+      \bTD The VWI User is logged in the application and the contrast has been adjusted to desired level. \eTD
+       \eTR
+      \bTR
+      \bTD Trigger \eTD
+      \bTD The VWI User wants to adjust the screen's contrast. \eTD
+       \eTR
+      \bTR
+      \bTD Main Flow \eTD
+      \bTD \startitemize[packed]
+      \item The VWI User performs the long-touch gesture on the device's screen.
+      \item The application presents the context menu.
+      \item The VWI User touches on the contrast icon.
+      \item The contrast icon highlights to indicate being selected.
+      \item The VWI User then adjusts the contrast higher by pressing on the + icon.
+      \item The VWI User then adjusts the contrast lower by pressing on the - icon.
+      \item The VWI User touches the center of the context menu to close the context menu.
+      \stopitemize \eTD
+       \eTR
+      \bTR
+      \bTD Exception \eTD
+      \bTD
+      1a. The VWI User already has the context menu open.
+
+       1a1. The VWI User continues from Step 3.
+
+      3a. The VWI User already has selected the contrasticon.
+
+       3a1. The VWI User continues from Step 5.
+
+      5a. The contrastis already at the highest level.
+
+       5a1. The + icon is dimmed out and inaccessible.
+
+       5a2. The VWI User continues from Step 6.
+
+      6a. The contrastis already at the lowest level.
+
+       6a1. The - icon is dimmed out and inaccessible.
+
+       6a2. The VWI User continues from Step 7.
+       \eTD
+       \eTR
+      \eTABLEbody
+      \eTABLE
+
+      \subsection{UC 17 - Adjust Display Font Size}
+      \bTABLE
+      \bTABLEbody
+      \bTR
+      \bTD Actors \eTD
+      \bTD VWI User \eTD
+       \eTR
+      \bTR
+      \bTD Stakeholder/Needs \eTD
+      \bTD  \eTD
+       \eTR
+      \bTR
+      \bTD Overview \eTD
+      \bTD The VWI User adjusts the display's font size. \eTD
+       \eTR
+      \bTR
+      \bTD Pre-conditions \eTD
+      \bTD The VWI User is logged in the application. \eTD
+       \eTR
+      \bTR
+      \bTD Post-conditions \eTD
+      \bTD The VWI User is logged in the application and the font sizehas been adjusted to desired level. \eTD
+       \eTR
+      \bTR
+      \bTD Trigger \eTD
+      \bTD The VWI User wants to adjust the screen's font size. \eTD
+       \eTR
+      \bTR
+      \bTD Main Flow \eTD
+      \bTD \startitemize[packed]
+      \item The VWI User performs the long-touch gesture on the device's screen.
+      \item The application presents the context menu.
+      \item The VWI User touches on the font sizeicon.
+      \item The font sizeicon highlights to indicate being selected.
+      \item The VWI User then adjusts the font sizehigher by pressing on the + icon.
+      \item The VWI User then adjusts the font sizelower by pressing on the - icon.
+      \item The VWI User touches the center of the context menu to close the context menu.
+      \stopitemize \eTD
+       \eTR
+      \bTR
+      \bTD Exception \eTD
+      \bTD
+      1a. The VWI User already has the context menu open.
+
+       1a1. The VWI User continues from Step 3.
+
+      3a. The VWI User already has selected the font sizeicon.
+
+       3a1. The VWI User continues from Step 5.
+
+      5a. The font sizeis already at the highest level.
+
+       5a1. The + icon is dimmed out and inaccessible.
+
+       5a2. The VWI User continues from Step 6.
+
+      6a. The font sizeis already at the lowest level.
+
+       6a1. The - icon is dimmed out and inaccessible.
+
+       6a2. The VWI User continues from Step 7.
+       \eTD
+       \eTR
+      \eTABLEbody
+      \eTABLE
+
+      \subsection{UC 18 View Older Version of a VWI}
+      \bTABLE
+      \bTABLEbody
+      \bTR
+      \bTD Actors  \eTD
+      \bTD VWI User \eTD
+       \eTR
+      \bTR
+      \bTD Stakeholder/Needs  \eTD
+      \bTD  \eTD
+       \eTR
+      \bTR
+      \bTD Overview \eTD
+      \bTD The VWI User views an older version of a VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Pre-conditions \eTD
+      \bTD The VWI User is viewing a VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Post-conditions \eTD
+      \bTD The VWI User is viewing an older version of the VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Trigger \eTD
+      \bTD The VWI User wants to view an older version of the currently viewed VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Main Flow \eTD
+      \bTD \startitemize[packed]
+      \item The VWI User swipes the display to the left.
+      \item The Version pane appears on the right of the screen.
+      \item The VWI User touches the version he/her wishes to view.
+      \item The Application applies the patch information to reconstruct older version.
+      \item The VWI being displayed is now the older version that was just selected.
+      \stopitemize \eTD
+       \eTR
+      \bTR
+      \bTD Exception \eTD
+      \bTD
+      1a. The Version pane is already opened.
+
+       1a1. The VWI user continues from Step 3.
+
+      3a. The VWI User wishes to go to a version that is not in view.
+
+       3a1. The VWI User performs the swipe gesture on the Version pane.
+
+       3a2. The Version pane scrolls such that other versions are now visible.
+
+       3a3. The VWI User continues from Step 3.
+
+      4a. The patch information is not in the cache.
+
+       4a1. The Application places the required patches in the download queue.
+
+       4a2. A notification is shown to indicate the downloading process.
+
+       4a3. The VWI User continue from Step 4.
+       \eTD
+       \eTR
+      \eTABLEbody
+      \eTABLE
+
+      \subsection{UC 19 - Compare Two Version of a VWI}
+      \bTABLE[split=yes]
+      \bTABLEbody
+      \bTR
+      \bTD Actors \eTD
+      \bTD VWI User \eTD
+       \eTR
+      \bTR
+      \bTD Stakeholder/Needs \eTD
+      \bTD  \eTD
+       \eTR
+      \bTR
+      \bTD Overview \eTD
+      \bTD VWI User is comparing two different versions of the same VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Pre-conditions \eTD
+      \bTD The VWI User is viewing a VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Post-conditions \eTD
+      \bTD The VWI User is viewing two different versions of the same VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Trigger \eTD
+      \bTD The VWI User wants to view two different versions of the same VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Main Flow \eTD
+      \bTD \startitemize[packed]
+      \item The VWI User swipes the display to the left.
+      \item The Version pane appears on the right of the screen.
+      \item The VWI User drags the left slider to the version he/her wishes to view as the first VWI.
+      \item The Application applies the patch information to reconstruct the first VWI's version.
+      \item The VWI User drags the right slider to the version he/her wishes to view as the second VWI.
+      \item The Application applies the patch information to reconstruct the second VWI's version.
+      \item The Application finds the differences (changes) between the two versions and colours them.
+      \stopitemize \eTD
+       \eTR
+      \bTR
+      \bTD Exception \eTD
+      \bTD
+      1a. The Version pane is already opened.
+
+       1a1. The VWI user continues from Step 3.
+
+      3a. The VWI User wishes to go to a version that is not in view.
+
+       3a1. The VWI User performs the swipe gesture on the Version pane.
+
+       3a2. The Version pane scrolls such that other versions are now visible.
+
+       3a3. The VWI User continues from Step 3.
+
+      4a. The patch information is not in the cache.
+
+       4a1. The Application places the required patches in the download queue.
+
+       4a2. A notification is shown to indicate the downloading process.
+
+       4a3. The VWI User continue from Step 4.
+
+      5a. The VWI User wishes to go to a version that is not in view.
+
+       5a1. The VWI User performs the swipe gesture on the Version pane.
+
+       5a2. The Version pane scrolls such that other versions are now visible.
+
+       5a3. The VWI User continues from Step 5.
+
+      6a. The patch information is not in the cache.
+
+       6a1. The Application places the required patches in the download queue.
+
+       6a2. A notification is shown to indicate the downloading process.
+
+       6a3. The VWI User continue from Step 6.
+       \eTD
+       \eTR
+      \eTABLEbody
+      \eTABLE
+
+      \subsection{UC 20 - Downloading a VWI}
+      \bTABLE
+      \bTABLEbody
+      \bTR
+      \bTD Actors \eTD
+      \bTD VWI User \eTD
+       \eTR
+      \bTR
+      \bTD Stakeholder/Needs \eTD
+      \bTD  \eTD
+       \eTR
+      \bTR
+      \bTD Overview \eTD
+      \bTD The VWI User downloads a VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Pre-conditions \eTD
+      \bTD The VWI User is logged in the application and the desired VWI that has not been downloaded yet, which is indicated with a red circle. \eTD
+       \eTR
+      \bTR
+      \bTD Post-conditions \eTD
+      \bTD The VWI User has downloaded the VWI and it is ready to be opened, which is indicated with a green circle. \eTD
+       \eTR
+      \bTR
+      \bTD Trigger \eTD
+      \bTD The VWI User wants to open a VWI, but has to download it first. \eTD
+       \eTR
+      \bTR
+      \bTD Main Flow \eTD
+      \bTD \startitemize[packed]
+      \item The VWI User clicks on the desired VWI to open.
+      \item The Application displays a notification saying that the VWI is being downloaded.
+      \item The Application displays a progress bar, indicating the progress of the downloading.
+      \item The Application displays an update on the notification saying the download is complete.
+      \item The Application now displays a green circle on the downloaded VWI.
+      \item The VWI User clicks on the notification and the corresponding VWI opens.
+      \stopitemize \eTD
+       \eTR
+      \bTR
+      \bTD Exception \eTD
+      \bTD
+      6a. The VWI User clicks on the VWI itself.
+
+       6a1. The Application opens the VWI up.
+
+       6a2. The Application discards the notification regarding the download completion.
+       \eTD
+       \eTR
+      \eTABLEbody
+      \eTABLE
+
+      \subsection{UC 21 - VWI Uses Text-To-Speech}
+      \bTABLE
+      \bTABLEbody
+      \bTR
+      \bTD Actors \eTD
+      \bTD VWI User \eTD
+       \eTR
+      \bTR
+      \bTD Stakeholder/Needs \eTD
+      \bTD  \eTD
+       \eTR
+      \bTR
+      \bTD Overview \eTD
+      \bTD The VWI User makes uses of the Text-To-Speech accessibility feature. \eTD
+       \eTR
+      \bTR
+      \bTD Pre-conditions \eTD
+      \bTD The VWI User is logged in the application and viewing a VWI. \eTD
+       \eTR
+      \bTR
+      \bTD Post-conditions \eTD
+      \bTD The VWI User has a selected segment of text being spoken using the Text-To-Speech feature. \eTD
+       \eTR
+      \bTR
+      \bTD Trigger \eTD
+      \bTD The VWI User wants to have a specific segment of text within the VWI to be read to them. \eTD
+       \eTR
+      \bTR
+      \bTD Main Flow \eTD
+      \bTD \startitemize[packed]
+      \item The VWI User performs the long-touch gesture on a segment of text (paragraphs).
+      \item The Application presents the context menu.
+      \item The VWI User touches on the Speech option.
+      \item The Application then begins reading the selected paragraph (based on long-touch location).
+      \stopitemize \eTD
+       \eTR
+      \bTR
+      \bTD Exception \eTD
+      \bTD
+      1a. The VWI User already has the context menu open.
+
+       1a1. The VWI User continues from Step 3.
+       \eTD
+       \eTR
+      \eTABLEbody
+      \eTABLE
 
   \chapter{Scenarios}
-    %
+    \placefigure[][fig:authenticate]{User authentication procedure.}{\externalfigure[authenticate]}
 
   \chapter{User Interface}
     %
@@ -622,10 +1843,137 @@
     \placefigure[][fig:factory-network-diagram]{Factory network diagram.}{\externalfigure[factory-network-diagram]}
 
   \chapter{Special Technologies}
-    %
+    \section{Diff Patching}
+      Patches are pushed out when the VWI process is ``published,'' so all patches are representative of a final state of a VWI process, and never in between.
+
+      Each patch item use a common header that contains identification and location information. The contents are as follows
+
+      \startitemize
+        \item Patch ID: Unique ID assigned to a patch
+        \item Repository ID: Uniquely identifies the master repository
+        \item VWI Process ID: Identifies a VWI process
+        \item VWI Version: The version number
+      \stopitemize
+
+      Each patch contains a data section that is first compressed (except for video and images), and then sent over the encrypted network connection. At the client/tablet, each patch is uncompressed and then verified for integrity. Then the data is sent to the patch manager to update the local cache.
+
+      \placefigure[][fig:patching]{Patching a VWI.}{\externalfigure[patching]}
+
+      The patching will be executed quite similar to existing technologies in diff patching for the Linux Operating System. A VWI can be broken down into the following:
+
+      \startitemize
+        \item Processes
+          \startitemize
+            \item Steps (simple text)
+            \item Images (image link, id)
+            \item Videos (video link, id)
+            \item Hyperlinks (hyperlink)
+          \stopitemize
+      \stopitemize
+
+      Given that a VWI is represented as a HTML file, the whole VWI can be can be represented in a textual format. This is where diff patching comes into play. Assuming that a new version of a VWI is available, a patch is formulated from the previous version and the new version. This patch will consist of just textual changes, which can be transmitted securely over the network quickly. On the mobile application, the patch will be applied to the existing version to update it. Images and videos have to be handled in a slightly unique manner since it is possible that the image has been updated (the actFual multimedia name could remain the same). Every multimedia item will be given a unique identifier automatically.  Every time a multimedia item changes, it will be given a new unique identifier as it is considered a new item.  This allows the existing caching solution to work without modification.  If the application controller requests a multimedia item that is new, it will not exist in the cache, and thus be retrieved from the network without having to check version information.
+
+    \section{VWI Synchronization}
+      The approach used for VWI synchronization is tailed towards the devices themselves. Non-functional requirements of this project dictate that the application must be fast and cheap, and indirectly the mobile device's battery must last as long as possible. To do so a hybrid approach of server pushing and client polling will be used to minimize the costs and maximize the efficiency. When the mobile application is started, the application will notify the servers of the device's presence, and polls the server for any new versions of VWIs to download. The server keeps a list of currently connected devices, and maintains this list from listening to heart-beats from devices. In the event that a device misses it's heart-beat 3 times in a row the server will remove the device from the list. In the event of VWI being updated on the server, the latest version number of the VWI is pushed out to every device. The server keeps a list of all devices that have yet to receive the notification. The pushing process is accomplished by simply iterating over the connected (and newly connected) devices and sending the VWI version update notification. When a device receives the notification, it responds to the server, so that it is removed from the push list for that VWI.
+
+      \placefigure[][fig:download-vwi]{Downloading a VWI.}{\externalfigure[download-vwi]}
+
+      Given that one of the pressing non-functional requirements of this project is speed and response time. It is important that the updating process is fast and cheap. This is accomplished by utilizing the diff patching to transfer the textual changes quickly with little network consumption. In the event that an image has change as well the low-quality image is fetched after all the text has been acquired. Videos are always retrieved on demand. This ordering will present the VWI User with an updated version of the VWI as quick as possible, since the text will update first with each of the more costly pieces updating in real-time when available.
+
+      \placefigure[][fig:update-vwi]{Updating a VWI.}{\externalfigure[update-vwi]}
+
+      To ensure a quick delivery of updates and low mobile data consumption a wireless access point connection is preferred. Given that the mobile device might be outside of an access point there should still be update connectivity through the mobile's data. Therefore the following rules are implemented:
+
+      \startitemize
+        \item VWI User is viewing a VWI, that has an update, while connected to wifi.
+          \startitemize
+            \item A notification will indicate that the current VWI is being updated, and the update will be downloaded with top priority.
+          \stopitemize
+        \item VWI User is viewing a VWI, that has an update, while only connected to mobile data.
+          \startitemize
+            \item A notification will indicate the current VWI has an update and will queue the update with top priority.
+          \stopitemize
+        \item VWI User is viewing a VWI, that has an update, with no network and with downloads occurring and/or queued.
+          \startitemize
+            \item A notification will indicate lost of connectivity, and downloading VWIs will be placed at top priority. Downloaded VWIs will resume automatically when network is restored (on wifi only, unless was downloaded on mobile data).
+          \stopitemize
+        \item VWI User is not viewing a VWI that has an update, while connected to wifi.
+          \startitemize
+            \item A notification will indicate that another VWI is being updated, and the update will be downloaded with low priority.
+          \stopitemize
+        \item VWI User is not viewing a VWI that has an update, while only connected to mobile data.
+          \startitemize
+            \item A notification will indicate that another VWI is being updated, and the update will be queued with low priority.
+          \stopitemize
+        \item VWI User is not viewing a VWI that has an update, with no network and with downloads occurring and/or queued.
+          \startitemize
+            \item A notification will indicate lost of connectivity, and downloading VWIs will be placed at top priority. Downloaded VWIs will resume automatically when network is restored (on wifi only, unless was downloaded on mobile data).
+          \stopitemize
+      \stopitemize
+
+    \section{Data Transmission, Storage and Encryption}
+      Data will be accessed from the server using a RESTful API.  The only verbs allowed will be GET (for retrieval) and POST (for feedback).  The client is unable to replace or delete any content, and thus the server does not respond to PUT or DELETE verbs.
+
+      \subsection{Examples}
+        \startitemize
+          \item Retrieving a VWI:
+
+            \type{GET /vwi/<identifier>}
+          \item Retrieving a media item:
+
+            \type{GET /media/<identifier>}
+
+          \item Posting feedback:
+
+            \type{POST /feedback/<vwi id>}
+
+            \startitemize
+              \item With header information:
+
+                \type{Type:  <type id>}
+
+                \type{Agree:  <bool>}
+            \stopitemize
+        \stopitemize
+
+      All data must be transmitted and stored in a secure manner.  This means encrypting the data during transmission and storage.  For transmission, HTTPS is to be used.  HTTPS requires the server use a static IP address and have a private certificate installed.  This certificate can come from a trusted Certificate Authority (cost ranges anywhere from $0 to $1500), or a company can create their own CA for free and deploy their own CA root certificate to the application.  This helps satisfy the requirement that the application be cheap to implement.
+
+      For storage, the data must be re-encrypted.  This is because HTTPS only handles encryption from end-to-end.  Data is decrypted automatically when received on the client.  Each object is stored in the cache in a binary format.  The data access layer maintains a Registry of data objects.  It contains the logic for accessing the cache, and, if need be, retrieving objects from the network.  If the data fits in the cache, it is placed inside of it.  If not, the cache must clear space.
+
+      For encryption, the client is sent back a unique token when the user logs in successfully.  The encryption key is composed of this unique token, as well as the user's credentials.  This way a potential data thief cannot decrypt the contents from the user's credentials alone.  This token is based off of a PRNG and is thus potentially vulnerable to attack.  The encryption algorithm to be used is Blowfish.
+
+    \subsection{Caching Rules}
+      Any object that is inserted into the cache must be given enough space to fit.  If there is not enough space, the cache must invalidate some older items and purge them.  In addition, the cache periodically runs a garbage collector which cleans the cache at set intervals.  Cache cleansing takes place periodically, while when the cache is full, it takes place on demand.  Performing this operation on demand slows down the user experience, while doing so in the background periodically allows the application to always appear responsive to the user.
+
+      The cleansing algorithm uses a LRU approach.  Every time an object is accessed, it is given a new timestamp.  When a cleansing is requested, the object with the oldest timestamp is invalidated and purged from the cache.  In addition, objects which are past a certain age are also purged.
+
+    \subsection{Location/Remote Wipe}
+      There are three triggers that would cause a remote wipe to happen:
+
+      \startitemize[n]
+        \item Time based wipe - When the application starts, it will spawn a daemon that sends a "pulse" to the server to let it know the device is still active.  When the daemon is unable to contact the server for x hours (default 36, configurable), it starts the remote wipe process.  This process clears the entire cache to protect the company from theft of its data.
+        \item GPS based wipe - This daemon will periodically poll for the device's GPS location.  If the device is moved out of range (configurable distance), the remote wipe process begins.
+        \item Connection based wipe - The repository server itself can send a wipe command that will cause the application to invoke the remote wipe program.
+      \stopitemize
+
+      \subsubsection{Remote wipe program}
+        \startitemize
+          \item The remote wipe program will overwrite the cache portion with 0s to clear disk memory.
+          \item The remote wipe program will clear out the user credentials on the device so the user will be unable to login.
+          \item If the VWI is open it will close automatically and remote wipe will start.
+        \stopitem
+
+    A daemon will be running in the background to send and receive heart-beats to/from the repository.
+
+    \section{Notification System}
+      \subsection{Messaging}
+        The native Android notification system will be used to notify users of events such as download completion of a VWI process. The notification will appear as a message bar at the top of the screen.  Users have the ability to view notifications by placing their finger at the top of the screen and swiping down.  From here they can clear all notifications if desired.
+
+      \subsection{Visual Nofications}
+        When the user is scrolling the screen via the swiping gesture, a scroll bar will temporary appear to indicate user location in terms of the overall content. A bar will flash at the top or bottom end if the user tries to scroll past the available content.
 
   \chapter{Class Diagrams}
-    %
+    \placefigure[][fig:class-diagram-all]{Overview of system structure.}{\externalfigure[class-diagram-all]}
 
   \chapter{Sequence Diagrams}
 
